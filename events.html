@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        .post-container button {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <section class="data-container"></section>
+    </main>
+    <template class="data-template">
+        <article class="post-container">
+
+
+            <h2 data-overskrift></h2>
+
+            <div>
+
+                <p data-genre></p>
+                <img data-billede>
+                <p data-lang-beskrivelse></p>
+                <p data-dato></p>
+                <p data-lokation></p>
+                <p data-pris></p>
+                <button data-button>Køb</button>
+
+
+
+            </div>
+
+
+
+        </article>
+    </template>
+
+
+    <script>
+        let wpJSON;
+        let dest = document.querySelector(".data-container");
+        document.addEventListener("DOMContentLoaded", hentJson);
+
+
+
+
+        async function hentJson() {
+            let myJson = await fetch("http://mboegvald.dk/kea/07-cms/huset/wordpress/wp-json/wp/v2/events");
+            wpJSON = await myJson.json();
+            visJson();
+        }
+
+        function visJson() {
+            let myTemplate = document.querySelector(".data-template");
+            console.log(wpJSON);
+
+
+            wpJSON.forEach(post => {
+
+
+                let klon = myTemplate.cloneNode(true).content;
+
+                if (post.acf.Events == "Film") {
+
+                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
+
+                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
+
+                    klon.querySelector("[data-billede]").src = post.acf.Billede;
+
+                    klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;
+
+                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
+
+                    klon.querySelector("[data-pris]").textContent = post.acf.Pris;
+
+                    if (post.acf.Buy == true) {
+
+                        klon.querySelector("[data-button]").style.display = "block";
+
+                    }
+
+
+                    /*  klon.querySelector("[data-koeb]").textContent = post.acf.Koeb;*/
+
+                } else if (post.acf.Events == "Musik") {
+
+                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
+
+                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
+
+                    klon.querySelector("[data-billede]").src = post.acf.Billede;
+
+                    klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;
+
+                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
+
+                    klon.querySelector("[data-pris]").textContent = post.acf.Pris;
+
+                    if (post.acf.Buy == true) {
+
+                        klon.querySelector("[data-button]").style.display = "block";
+
+                    }
+
+
+                } else if (post.acf.Events == "Art") {
+
+                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
+
+                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
+
+                    klon.querySelector("[data-billede]").src = post.acf.Billede;
+
+                    klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;
+
+                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
+
+                    klon.querySelector("[data-pris]").textContent = post.acf.Pris;
+
+                    if (post.acf.Buy == true) {
+
+                        klon.querySelector("[data-button]").style.display = "block";
+
+                    }
+
+
+                }
+
+                else if (post.acf.Events == "Teater") {
+
+                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
+
+                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
+
+                    klon.querySelector("[data-billede]").src = post.acf.Billede;
+
+                    klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;
+
+                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
+
+                    klon.querySelector("[data-pris]").textContent = post.acf.Pris;
+
+                    if (post.acf.Buy == true) {
+
+                        klon.querySelector("[data-button]").style.display = "block";
+
+                    }
+
+
+                }
+
+                else if (post.acf.Events == "Stand_up") {
+
+                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
+
+                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
+
+                    klon.querySelector("[data-billede]").src = post.acf.Billede;
+
+                    klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;
+
+                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
+
+                    klon.querySelector("[data-pris]").textContent = post.acf.Pris;
+
+                    if (post.acf.Buy == true) {
+
+                        klon.querySelector("[data-button]").style.display = "block";
+
+                    }
+
+
+                }
+
+                else if (post.acf.Events == "Diverse") {
+
+                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
+
+                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
+
+                    klon.querySelector("[data-billede]").src = post.acf.Billede;
+
+                    klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;
+
+                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
+
+                    klon.querySelector("[data-pris]").textContent = post.acf.Pris;
+
+                    if (post.acf.Buy == true) {
+
+                        klon.querySelector("[data-button]").style.display = "block";
+
+                    }
+
+
+                }
+
+
+                dest.appendChild(klon);
+
+            })
+        }
+    </script>
+
+</body>
+
+</html>
