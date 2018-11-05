@@ -6,21 +6,88 @@
     <title>Document</title>
 
     <style>
+        :root {
+            --blaa: rgb(36, 25, 93);
+            --groen: rgb(0, 89, 36);
+            --roed: rgb(211, 7, 42);
+            --graa: rgb(157, 157, 156);
+            --lyseblaa: rgb(233, 242, 253);
+            --lysegroen: rgb(226, 238, 216);
+            --lyseroed: rgb(252, 229, 241);
+
+
+        }
+
         * {
             margin: 0;
             padding: 0;
+            font-family: "Avenir", Verdana, sans-serif;
 
+        }
+
+        body {
+            min-height: 100%;
+            display: grid;
+            grid-template-rows: 1fr auto;
         }
 
         .post-container button {
             display: none;
+            border: solid 2px var(--roed);
+            padding: 5px;
+            width: 10vw;
+            background-color: var(--lyseblaa);
+        }
+
+        #indhold {
+            width: 100vw;
+            background: var(--lyseblaa);
+        }
+
+        .data-container {
+            display: grid;
+            max-width: 1300px;
+            margin: 0 auto;
+
+        }
+
+        .data-container article img {
+            width: 100%;
+        }
+
+        .post-container {
+            padding: 1em;
+            grid-row: span 1;
+
+        }
+
+        .post-container p,
+        .post-container img,
+        .post-container h2,
+        .post-container button {
+            margin: 7px;
+        }
+
+        .flex-pris {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        @media screen and (min-width:1000px) {
+            .data-container {
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-gap: 20px;
+
+            }
         }
     </style>
 </head>
 
 <body>
-    <main class="container">
-        <section class="data-container"></section>
+    <main id="indhold">
+        <div class="container">
+            <section class="data-container"></section>
+        </div>
     </main>
     <template class="data-template">
         <article class="post-container">
@@ -32,12 +99,13 @@
 
                 <p data-genre></p>
                 <img data-billede>
-                <p data-lang-beskrivelse></p>
+                <!-- <p data-lang-beskrivelse></p>-->
                 <p data-dato></p>
                 <p data-lokation></p>
-                <p data-pris></p>
-                <button data-button>Køb</button>
-
+                <div class="flex-pris">
+                    <p data-pris></p>
+                    <button data-button>Køb</button>
+                </div>
 
 
             </div>
@@ -57,7 +125,7 @@
 
 
         async function hentJson() {
-            let myJson = await fetch("http://mboegvald.dk/kea/07-cms/huset/wordpress/wp-json/wp/v2/events");
+            let myJson = await fetch("http://mboegvald.dk/kea/07-cms/huset/wordpress/wp-json/wp/v2/events/?per_page=50");
             wpJSON = await myJson.json();
             visJson();
         }
@@ -80,11 +148,11 @@
 
                     klon.querySelector("[data-billede]").src = post.acf.Billede;
 
-                    klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;
+                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
 
                     klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
 
-                    klon.querySelector("[data-pris]").textContent = post.acf.Pris;
+                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
 
                     if (post.acf.Buy == true) {
 
@@ -103,11 +171,11 @@
 
                     klon.querySelector("[data-billede]").src = post.acf.Billede;
 
-                    klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;
+                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
 
                     klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
 
-                    klon.querySelector("[data-pris]").textContent = post.acf.Pris;
+                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
 
                     if (post.acf.Buy == true) {
 
@@ -124,11 +192,11 @@
 
                     klon.querySelector("[data-billede]").src = post.acf.Billede;
 
-                    klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;
+                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
 
                     klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
 
-                    klon.querySelector("[data-pris]").textContent = post.acf.Pris;
+                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
 
                     if (post.acf.Buy == true) {
 
@@ -137,9 +205,7 @@
                     }
 
 
-                }
-
-                else if (post.acf.Events == "Teater") {
+                } else if (post.acf.Events == "Teater") {
 
                     klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
 
@@ -147,11 +213,11 @@
 
                     klon.querySelector("[data-billede]").src = post.acf.Billede;
 
-                    klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;
+                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
 
                     klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
 
-                    klon.querySelector("[data-pris]").textContent = post.acf.Pris;
+                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
 
                     if (post.acf.Buy == true) {
 
@@ -160,9 +226,7 @@
                     }
 
 
-                }
-
-                else if (post.acf.Events == "Stand_up") {
+                } else if (post.acf.Events == "Stand_up") {
 
                     klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
 
@@ -170,11 +234,11 @@
 
                     klon.querySelector("[data-billede]").src = post.acf.Billede;
 
-                    klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;
+                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
 
                     klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
 
-                    klon.querySelector("[data-pris]").textContent = post.acf.Pris;
+                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
 
                     if (post.acf.Buy == true) {
 
@@ -183,9 +247,7 @@
                     }
 
 
-                }
-
-                else if (post.acf.Events == "Diverse") {
+                } else if (post.acf.Events == "Diverse") {
 
                     klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
 
@@ -193,11 +255,11 @@
 
                     klon.querySelector("[data-billede]").src = post.acf.Billede;
 
-                    klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;
+                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
 
                     klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
 
-                    klon.querySelector("[data-pris]").textContent = post.acf.Pris;
+                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
 
                     if (post.acf.Buy == true) {
 
@@ -205,6 +267,25 @@
 
                     }
 
+
+                } else {
+                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
+
+                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
+
+                    klon.querySelector("[data-billede]").src = post.acf.Billede;
+
+                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;
+                     */
+                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
+
+                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
+
+                    if (post.acf.Buy == true) {
+
+                        klon.querySelector("[data-button]").style.display = "block";
+
+                    }
 
                 }
 
