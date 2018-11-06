@@ -73,6 +73,18 @@
             justify-content: space-between;
         }
 
+        #filtrerings_knapper {
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .menu-item {
+            border: none;
+            border-bottom: 1px solid var(--groen);
+            margin: 7px;
+        }
+
         @media screen and (min-width:1000px) {
             .data-container {
                 grid-template-columns: 1fr 1fr 1fr;
@@ -84,6 +96,16 @@
 </head>
 
 <body>
+
+    <div id="filtrerings_knapper">
+        <button class="menu-item" data-kategori="Menu">Alle Events</button>
+        <button class="menu-item" data-kategori="Musik">Musik</button>
+        <button class="menu-item" data-kategori="Teater">Teater</button>
+        <button class="menu-item" data-kategori="Film">Film</button>
+        <button class="menu-item" data-kategori="Art">Art</button>
+        <button class="menu-item" data-kategori="Stand up">Stand Up</button>
+        <button class="menu-item" data-kategori="Diverse">Diverse</button>
+    </div>
     <main id="indhold">
         <div class="container">
             <section class="data-container"></section>
@@ -106,7 +128,7 @@
                     <p data-pris></p>
                     <button data-button>Køb</button>
                 </div>
-
+                <hr class="divider">
 
             </div>
 
@@ -119,9 +141,9 @@
     <script>
         let wpJSON;
         let dest = document.querySelector(".data-container");
+        let eventFilter = "Menu";
+
         document.addEventListener("DOMContentLoaded", hentJson);
-
-
 
 
         async function hentJson() {
@@ -130,18 +152,27 @@
             visJson();
         }
 
+        document.querySelectorAll(".menu-item").forEach(knap => {
+            knap.addEventListener("click", filtrering);
+        });
+
+        function filtrering() {
+            dest.textContent = "";
+            eventFilter = this.getAttribute("data-kategori");
+            visJson();
+            console.log("filtrering");
+        }
+
+
         function visJson() {
             let myTemplate = document.querySelector(".data-template");
             console.log(wpJSON);
-
+            console.log("visJson");
 
             wpJSON.forEach(post => {
-
-
-                let klon = myTemplate.cloneNode(true).content;
-
-                if (post.acf.Events == "Film") {
-
+                if (post.acf.Events == eventFilter || eventFilter == "Menu") {
+                    console.log("ifstatement")
+                    let klon = myTemplate.cloneNode(true).content;
                     klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
 
                     klon.querySelector("[data-genre]").textContent = post.acf.Genre;
@@ -159,141 +190,178 @@
                         klon.querySelector("[data-button]").style.display = "block";
 
                     }
-
-
-                    /*  klon.querySelector("[data-koeb]").textContent = post.acf.Koeb;*/
-
-                } else if (post.acf.Events == "Musik") {
-
-                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
-
-                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
-
-                    klon.querySelector("[data-billede]").src = post.acf.Billede;
-
-                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
-
-                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
-
-                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
-
-                    if (post.acf.Buy == true) {
-
-                        klon.querySelector("[data-button]").style.display = "block";
-
-                    }
-
-
-                } else if (post.acf.Events == "Art") {
-
-                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
-
-                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
-
-                    klon.querySelector("[data-billede]").src = post.acf.Billede;
-
-                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
-
-                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
-
-                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
-
-                    if (post.acf.Buy == true) {
-
-                        klon.querySelector("[data-button]").style.display = "block";
-
-                    }
-
-
-                } else if (post.acf.Events == "Teater") {
-
-                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
-
-                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
-
-                    klon.querySelector("[data-billede]").src = post.acf.Billede;
-
-                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
-
-                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
-
-                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
-
-                    if (post.acf.Buy == true) {
-
-                        klon.querySelector("[data-button]").style.display = "block";
-
-                    }
-
-
-                } else if (post.acf.Events == "Stand_up") {
-
-                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
-
-                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
-
-                    klon.querySelector("[data-billede]").src = post.acf.Billede;
-
-                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
-
-                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
-
-                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
-
-                    if (post.acf.Buy == true) {
-
-                        klon.querySelector("[data-button]").style.display = "block";
-
-                    }
-
-
-                } else if (post.acf.Events == "Diverse") {
-
-                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
-
-                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
-
-                    klon.querySelector("[data-billede]").src = post.acf.Billede;
-
-                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
-
-                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
-
-                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
-
-                    if (post.acf.Buy == true) {
-
-                        klon.querySelector("[data-button]").style.display = "block";
-
-                    }
-
-
-                } else {
-                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
-
-                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
-
-                    klon.querySelector("[data-billede]").src = post.acf.Billede;
-
-                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;
-                     */
-                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
-
-                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
-
-                    if (post.acf.Buy == true) {
-
-                        klon.querySelector("[data-button]").style.display = "block";
-
-                    }
-
+                    dest.appendChild(klon);
                 }
-
-
-                dest.appendChild(klon);
 
             })
         }
+
+        //        function visJson() {
+        //            let myTemplate = document.querySelector(".data-template");
+        //            console.log(wpJSON);
+        //            console.log("visJson");
+        //
+        //
+        //            wpJSON.forEach(post => {
+        //
+        //
+        //                let klon = myTemplate.cloneNode(true).content;
+        //
+        //
+        //                if (post.acf.Events == "Film") {
+        //
+        //                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
+        //
+        //                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
+        //
+        //                    klon.querySelector("[data-billede]").src = post.acf.Billede;
+        //
+        //                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
+        //
+        //                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
+        //
+        //                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
+        //
+        //                    if (post.acf.Buy == true) {
+        //
+        //                        klon.querySelector("[data-button]").style.display = "block";
+        //
+        //                    }
+        //
+        //
+        //                    /*  klon.querySelector("[data-koeb]").textContent = post.acf.Koeb;*/
+        //
+        //                } else if (post.acf.Events == "Musik") {
+        //
+        //                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
+        //
+        //                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
+        //
+        //                    klon.querySelector("[data-billede]").src = post.acf.Billede;
+        //
+        //                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
+        //
+        //                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
+        //
+        //                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
+        //
+        //                    if (post.acf.Buy == true) {
+        //
+        //                        klon.querySelector("[data-button]").style.display = "block";
+        //
+        //                    }
+        //
+        //
+        //                } else if (post.acf.Events == "Art") {
+        //
+        //                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
+        //
+        //                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
+        //
+        //                    klon.querySelector("[data-billede]").src = post.acf.Billede;
+        //
+        //                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
+        //
+        //                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
+        //
+        //                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
+        //
+        //                    if (post.acf.Buy == true) {
+        //
+        //                        klon.querySelector("[data-button]").style.display = "block";
+        //
+        //                    }
+        //
+        //
+        //                } else if (post.acf.Events == "Teater") {
+        //
+        //                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
+        //
+        //                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
+        //
+        //                    klon.querySelector("[data-billede]").src = post.acf.Billede;
+        //
+        //                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
+        //
+        //                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
+        //
+        //                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
+        //
+        //                    if (post.acf.Buy == true) {
+        //
+        //                        klon.querySelector("[data-button]").style.display = "block";
+        //
+        //                    }
+        //
+        //
+        //                } else if (post.acf.Events == "Stand_up") {
+        //
+        //                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
+        //
+        //                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
+        //
+        //                    klon.querySelector("[data-billede]").src = post.acf.Billede;
+        //
+        //                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
+        //
+        //                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
+        //
+        //                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
+        //
+        //                    if (post.acf.Buy == true) {
+        //
+        //                        klon.querySelector("[data-button]").style.display = "block";
+        //
+        //                    }
+        //
+        //
+        //                } else if (post.acf.Events == "Diverse") {
+        //
+        //                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
+        //
+        //                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
+        //
+        //                    klon.querySelector("[data-billede]").src = post.acf.Billede;
+        //
+        //                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
+        //
+        //                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
+        //
+        //                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
+        //
+        //                    if (post.acf.Buy == true) {
+        //
+        //                        klon.querySelector("[data-button]").style.display = "block";
+        //
+        //                    }
+        //
+        //
+        //                } else {
+        //                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
+        //
+        //                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
+        //
+        //                    klon.querySelector("[data-billede]").src = post.acf.Billede;
+        //
+        //                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;
+        //                     */
+        //                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
+        //
+        //                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
+        //
+        //                    if (post.acf.Buy == true) {
+        //
+        //                        klon.querySelector("[data-button]").style.display = "block";
+        //
+        //                    }
+        //
+        //                }
+        //
+        //
+        //                dest.appendChild(klon);
+        //
+        //            })
+        //        }
     </script>
 
 </body>
