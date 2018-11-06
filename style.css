@@ -1,1 +1,34 @@
+nav ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    padding: 0px;
 
+
+}
+
+nav ul li {
+    position: relative;
+    font-size: 1.3em;
+    display: block;
+
+
+}
+
+nav ul .menuitem {
+    margin: 10px;
+    display: block;
+}
+
+nav li:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+
+a {
+    color: rgb(211, 7, 42);
+    padding: 6px 6px;
+    text-decoration: none;
+    font-size: 1.3em;
+    font-family: HUSET;
+}
