@@ -1,13 +1,342 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <style>
+        :root {
+            --blaa: rgb(36, 25, 93);
+            --groen: rgb(0, 89, 36);
+            --roed: rgb(211, 7, 42);
+            --graa: rgb(157, 157, 156);
+            --lyseblaa: rgb(233, 242, 253);
+            --lysegroen: rgb(226, 238, 216);
+            --lyseroed: rgb(252, 229, 241);
+
+
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Avenir", Verdana, sans-serif;
+            background: var(--lyseblaa);
+
+        }
+
+        body {
+            min-height: 100vh;
+            display: grid;
+            grid-template-rows: 1fr auto;
+        }
+
+        .post-container button {
+            display: none;
+            border: solid 2px var(--roed);
+            padding: 5px;
+            width: 50px;
+        }
+
+        #indhold {
+            width: 100vw;
+
+        }
+
+        .data-container {
+            display: grid;
+            max-width: 400px;
+            margin: 0 auto;
+
+        }
+
+        .data-container article img {
+            width: 100%;
+        }
+
+        .post-container {
+            padding: 1em;
+            grid-row: span 1;
+
+
+        }
+
+        article div {
+            border-bottom: 1px solid #000;
+        }
+
+        .post-container p,
+        .post-container img,
+        .post-container h2,
+        .post-container button {
+            margin: 7px;
+        }
+
+        data-pris {
+            margin: 0 10px
+        }
+
+        .flex-pris {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .slideshow {
+            width: 100vw;
+            position: relative;
+            margin: auto;
+        }
+
+        .slideshow img {
+            width: 100%;
+        }
+
+        .slideNumber {
+            color: #fFF;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+            background-color: transparent;
+        }
+
+        .slideText {
+            color: #FFF;
+            font-size: 15px;
+            padding: 20px 0px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+            background-color: transparent;
+        }
+
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 45%;
+            width: auto;
+            color: #FFF;
+            font-weight: bold;
+            font-size: 3em;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            margin: 0 20px;
+            background-color: transparent;
+        }
+
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .slide {
+            display: none;
+        }
+
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 1.5s;
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {
+                opacity: .4
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        @media screen and (min-width:650px) {
+            .slideshow {
+                width: 70vw;
+
+            }
+
+            .data-container {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .data-container {
+
+                max-width: 600px;
+
+            }
+        }
+
+        @media screen and (min-width:1000px) {
+            .data-container {
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-gap: 20px;
+
+            }
+
+            .data-container {
+
+                max-width: 850px;
+
+            }
+
+            .slideshow {
+                width: 50vw;
+
+            }
+
+        }
+
+        @media screen and (min-width:1300px) {
+            .slideshow {
+                width: 35vw;
+
+            }
+
+            .data-container {
+
+                max-width: 1300px;
+
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <div class="slideshow">
+
+        <div class="slide fade">
+            <div class="slideNumber">1/3</div>
+            <img src="index-pics/1.jpg" alt="">
+            <div class="slideText">Billede 1</div>
+        </div>
+        <div class="slide fade">
+            <div class="slideNumber">2/3</div>
+            <img src="index-pics/2.jpg" alt="">
+            <div class="slideText">Billede 2</div>
+        </div>
+        <div class="slide fade">
+            <div class="slideNumber">3/3</div>
+            <img src="index-pics/3.png" alt="">
+            <div class="slideText">Billede 3</div>
+        </div>
+        <a class="prev" onclick="plusOne(-1)">&#10094;</a>
+        <a class="next" onclick="plusOne(1)">&#10095;</a>
+
+    </div>
+    <main id="indhold">
+        <div class="container">
+            <section class="data-container"></section>
+        </div>
+    </main>
+    <template class="data-template">
+        <article class="post-container">
+
+
+            <h2 data-overskrift></h2>
+
+            <div>
+
+                <p data-genre></p>
+                <img data-billede>
+                <!-- <p data-lang-beskrivelse></p>-->
+                <p data-dato></p>
+                <p data-lokation></p>
+                <div class="flex-pris">
+                    <p data-pris></p>
+                    <button data-button>Køb</button>
+                </div>
+
+
+            </div>
+
+            <!--<div class="divider"></div>-->
+
+        </article>
+    </template>
+
+
+    <script>
+        let wpJSON;
+        let dest = document.querySelector(".data-container");
+        document.addEventListener("DOMContentLoaded", hentJson);
+
+        let slideNumber = 1;
+        showSlides(slideNumber);
+
+        function plusOne(n) {
+            showSlides(slideNumber += n);
+        }
+
+
+
+        function showSlides(n) {
+            let i;
+            let slides = document.querySelectorAll(".slide");
+            if (n > slides.length) {
+                slideNumber = 1
+            }
+            if (n < 1) {
+                slideNumber = slides.length
+            }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            slides[slideNumber - 1].style.display = "block";
+
+
+
+        }
+
+        async function hentJson() {
+            let myJson = await fetch("http://mboegvald.dk/kea/07-cms/huset/wordpress/wp-json/wp/v2/events/?per_page=6");
+            wpJSON = await myJson.json();
+            visJson();
+        }
+
+
+
+        function visJson() {
+            let myTemplate = document.querySelector(".data-template");
+            console.log(wpJSON);
+
+
+            wpJSON.forEach(post => {
+
+
+                let klon = myTemplate.cloneNode(true).content;
+
+                if (post.acf.Events == "Film", "Musik", "Art", "Teater", "Stand_up", "Diverse") {
+
+                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
+
+                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
+
+                    klon.querySelector("[data-billede]").src = post.acf.Billede;
+
+                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
+
+                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
+
+                    klon.querySelector("[data-pris]").textContent = "Pris: " + post.acf.Pris + ",-";
+
+                    if (post.acf.Buy == true) {
+
+                        klon.querySelector("[data-button]").style.display = "block";
+
+                    }
+                }
+
+
+                dest.appendChild(klon);
+
+            })
+        }
+    </script>
 
 </body>
 
