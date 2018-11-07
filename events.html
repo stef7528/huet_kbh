@@ -32,11 +32,22 @@
         }
 
         .post-container button {
-            display: none;
+            border: 2px solid var(--roed);
+            background-color: var(--lyseroed);
+            color: var(--blaa);
+            border-radius: 2em;
+            height: 40px;
+            min-width: 125px;
+            padding: 0 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: .4s;
+
+            /*     display: none;
             border: solid 2px var(--roed);
             padding: 5px;
             width: 10vw;
-            background-color: var(--lyseblaa);
+            background-color: var(--lyseblaa);*/
         }
 
         #indhold {
@@ -72,8 +83,12 @@
             display: flex;
             justify-content: space-between;
             border-bottom: 1px solid #000;
+            padding-bottom: 10px;
         }
 
+        [data-pris] {
+            padding-top: 10px;
+        }
         .flex-genre {
             display: flex;
             justify-content: space-between;
@@ -82,6 +97,7 @@
         .flex-dato {
             display: flex;
         }
+
         #filtrerings_knapper {
             display: flex;
             justify-content: center;
@@ -112,15 +128,15 @@
 
 
     <main id="indhold">
-         <div id="filtrerings_knapper">
-        <button class="menu-item" data-kategori="Menu">Alle Events</button>
-        <button class="menu-item" data-kategori="Musik">Musik</button>
-        <button class="menu-item" data-kategori="Teater">Teater</button>
-        <button class="menu-item" data-kategori="Film">Film</button>
-        <button class="menu-item" data-kategori="Art">Art</button>
-        <button class="menu-item" data-kategori="Stand up">Stand Up</button>
-        <button class="menu-item" data-kategori="Diverse">Diverse</button>
-    </div>
+        <div id="filtrerings_knapper">
+            <button class="menu-item" data-kategori="Menu">Alle Events</button>
+            <button class="menu-item" data-kategori="Musik">Musik</button>
+            <button class="menu-item" data-kategori="Teater">Teater</button>
+            <button class="menu-item" data-kategori="Film">Film</button>
+            <button class="menu-item" data-kategori="Art">Art</button>
+            <button class="menu-item" data-kategori="Stand up">Stand Up</button>
+            <button class="menu-item" data-kategori="Diverse">Diverse</button>
+        </div>
         <div class="container">
             <section class="data-container"></section>
         </div>
@@ -133,14 +149,14 @@
 
             <div>
                 <div class="flex-genre">
-                <p data-genre></p>
-                <p data-lokation></p>
+                    <p data-genre></p>
+                    <p data-lokation></p>
                 </div>
                 <img data-billede>
                 <!-- <p data-lang-beskrivelse></p>-->
                 <div class="flex-dato">
-                <p data-dato></p>
-                <p data-tid></p>
+                    <p data-dato></p>
+                    <p data-tid></p>
                 </div>
                 <div class="flex-pris">
                     <p data-pris></p>
@@ -201,7 +217,7 @@
 
                     klon.querySelector("[data-dato]").textContent = post.acf.Dato;
 
-                    klon.querySelector("[data-tid]").textContent = "kl. " + post.acf.Tid;
+                    klon.querySelector("[data-tid]").textContent = "Kl. " + post.acf.Tid;
 
                     klon.querySelector("[data-pris]").textContent = "Pris: " + post.acf.Pris + ",-";
 
