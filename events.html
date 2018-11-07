@@ -71,8 +71,17 @@
         .flex-pris {
             display: flex;
             justify-content: space-between;
+            border-bottom: 1px solid #000;
         }
 
+        .flex-genre {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .flex-dato {
+            display: flex;
+        }
         #filtrerings_knapper {
             display: flex;
             justify-content: center;
@@ -81,8 +90,12 @@
 
         .menu-item {
             border: none;
-            border-bottom: 1px solid var(--groen);
+            border: 1px solid var(--groen);
             margin: 7px;
+            background-color: transparent;
+            font-size: 10px;
+            padding: 1px;
+
         }
 
         @media screen and (min-width:1000px) {
@@ -97,7 +110,9 @@
 
 <body>
 
-    <div id="filtrerings_knapper">
+
+    <main id="indhold">
+         <div id="filtrerings_knapper">
         <button class="menu-item" data-kategori="Menu">Alle Events</button>
         <button class="menu-item" data-kategori="Musik">Musik</button>
         <button class="menu-item" data-kategori="Teater">Teater</button>
@@ -106,7 +121,6 @@
         <button class="menu-item" data-kategori="Stand up">Stand Up</button>
         <button class="menu-item" data-kategori="Diverse">Diverse</button>
     </div>
-    <main id="indhold">
         <div class="container">
             <section class="data-container"></section>
         </div>
@@ -118,18 +132,20 @@
             <h2 data-overskrift></h2>
 
             <div>
-
+                <div class="flex-genre">
                 <p data-genre></p>
+                <p data-lokation></p>
+                </div>
                 <img data-billede>
                 <!-- <p data-lang-beskrivelse></p>-->
+                <div class="flex-dato">
                 <p data-dato></p>
-                <p data-lokation></p>
+                <p data-tid></p>
+                </div>
                 <div class="flex-pris">
                     <p data-pris></p>
                     <button data-button>Køb</button>
                 </div>
-                <hr class="divider">
-
             </div>
 
 
@@ -181,9 +197,13 @@
 
                     /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
 
-                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
+                    klon.querySelector("[data-lokation]").textContent = post.acf.Lokation;
 
-                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
+                    klon.querySelector("[data-dato]").textContent = post.acf.Dato;
+
+                    klon.querySelector("[data-tid]").textContent = "kl. " + post.acf.Tid;
+
+                    klon.querySelector("[data-pris]").textContent = "Pris: " + post.acf.Pris + ",-";
 
                     if (post.acf.Buy == true) {
 
