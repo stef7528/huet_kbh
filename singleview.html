@@ -4,6 +4,100 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <style>
+        :root {
+            --blaa: rgb(36, 25, 93);
+            --groen: rgb(0, 89, 36);
+            --roed: rgb(211, 7, 42);
+            --graa: rgb(157, 157, 156);
+            --lyseblaa: rgb(233, 242, 253);
+            --lysegroen: rgb(226, 238, 216);
+            --lyseroed: rgb(252, 229, 241);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Avenir", Verdana, sans-serif;
+
+        }
+
+
+        body {
+            background: var(--lyseblaa);
+        }
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+            padding: 5px;
+        }
+
+        h2 {
+            display: flex;
+            position: relative;
+            left: 375px;
+        }
+
+        .post-container button {
+            display: none;
+            border: 2px solid var(--roed);
+            background-color: var(--lyseroed);
+            color: var(--blaa);
+            border-radius: 2em;
+            height: 60px;
+            min-width: 125px;
+            padding: 0 30px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: .5s;
+            margin: 8px;
+            padding: 4px;
+
+        }
+
+        .post-container button:hover {
+            background-color: rgb(255, 179, 179);
+        }
+
+        .flex-genre {
+            position: relative;
+            left: 375px;
+            padding: 5px;
+
+        }
+
+        .flex-dato {
+            position: relative;
+            left: 375px;
+            top: 50px;
+        }
+
+        [data-pris] {
+            position: relative;
+            justify-content: space-around;
+            left: 875px;
+            top: 30px;
+        }
+
+        [data-button] {
+            position: relative;
+            left: 1000px;
+            bottom: 20px;
+            padding-bottom: 10px;
+        }
+
+
+        [data-lang-beskrivelse] {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 10px;
+            width: 50%;
+        }
+    </style>
 </head>
 
 <body>
@@ -67,11 +161,12 @@
                     display.querySelector("[data-overskrift]").textContent = post.acf.titel;
                     display.querySelector("[data-genre]").textContent = post.acf.genre;
                     display.querySelector("[data-billede]").src = post.acf.billede;
-                    display.querySelector("[data-lang-beskrivelse]").textContent = post.acf.beskrivelse;
                     display.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.sted;
                     display.querySelector("[data-pris]").textContent = "Pris: " + post.acf.pris + ",-";
                     display.querySelector("[data-dato]").textContent = post.acf.dato;
                     display.querySelector("[data-tid]").textContent = "Kl. " + post.acf.tid;
+                    display.querySelector("[data-lang-beskrivelse]").textContent = post.acf.beskrivelse;
+                    display.querySelector("[data-button]").style.display = "block";
 
                 }
             })
