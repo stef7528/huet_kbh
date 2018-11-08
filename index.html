@@ -11,17 +11,17 @@
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-<<<<<<< HEAD
+
 
     <!--<link rel="manifest" href="site.webmanifest">-->
     <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
-=======
+
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="manifest" href="/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
->>>>>>> origin/master
+
     <meta name="theme-color" content="#ffffff">
 
 
@@ -42,7 +42,7 @@
             margin: 0;
             padding: 0;
             font-family: "Avenir", Verdana, sans-serif;
-            background: #FFF;
+
 
         }
 
@@ -50,6 +50,7 @@
             min-height: 100vh;
             display: grid;
             grid-template-rows: 1fr auto;
+            background: var(--lyseblaa);
         }
 
         .post-container button {
@@ -63,7 +64,11 @@
             padding: 0 30px;
             font-size: 16px;
             cursor: pointer;
-            transition: .4s;
+            transition: .5s;
+        }
+
+        .post-container button:hover {
+            background-color: rgb(255, 179, 179);
         }
 
         #indhold {
@@ -75,6 +80,7 @@
             display: grid;
             max-width: 400px;
             margin: 0 auto;
+            grid-gap: 10px;
 
         }
 
@@ -85,8 +91,13 @@
         .post-container {
             padding: 1em;
             grid-row: span 1;
+            transition: .4s;
 
+        }
 
+        .post-container:hover {
+            border: 2px solid var(--roed);
+            transform: scale(1.1);
         }
 
         .post-container p,
@@ -103,7 +114,6 @@
         .flex-pris {
             display: flex;
             justify-content: space-between;
-            border-bottom: 1px solid #000;
             padding-bottom: 10px;
         }
 
@@ -125,6 +135,7 @@
             width: 100vw;
             position: relative;
             margin: auto;
+            margin-bottom: 50px;
         }
 
         .slideshow img {
@@ -160,11 +171,17 @@
             color: #FFF;
             font-weight: bold;
             font-size: 3em;
-            transition: 0.6s ease;
+            transition: 0.3s ease;
             border-radius: 0 3px 3px 0;
             margin: 0 20px;
             background-color: transparent;
         }
+
+        .prev:hover,
+        .next:hover {
+            font-size: 3.2em;
+        }
+
 
         .next {
             right: 0;
@@ -205,6 +222,7 @@
             .data-container {
 
                 max-width: 600px;
+
 
             }
 
@@ -263,6 +281,8 @@
         header {
             height: 150px;
             width: 100%;
+            background-color: var(--blaa);
+            margin-bottom: 50px;
         }
 
         .logo {
@@ -279,8 +299,9 @@
             position: relative;
             width: 70px;
             height: 60px;
-            left: 80px;
-            top: 83px;
+            left: 85px;
+            top: 13.5px;
+            /*top: 83px;*/
             background-color: transparent;
             cursor: pointer;
             transition: 0.5s;
@@ -365,10 +386,10 @@
 
                 <img class="logoPil" src="pics/logoer-04.png">
                 <ul class="mobile_nav_menu">
-                    <li><a href="">Events</a></li>
-                    <li><a href="">Venues</a></li>
-                    <li><a href="">Om Huset</a></li>
-                    <li><a href="">Kontakt</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="#">Venues</a></li>
+                    <li><a href="#">Om Huset</a></li>
+                    <li><a href="#">Kontakt</a></li>
                 </ul>
                 <a class="indexLink" href="index.html"></a>
             </div>
@@ -495,6 +516,7 @@
 
         function visJson() {
             let myTemplate = document.querySelector(".data-template");
+
             console.log(wpJSON);
 
 
@@ -525,10 +547,18 @@
 
                             klon.querySelector("[data-button]").style.display = "block";
 
+
                         }
+
+                        klon.querySelector(".post-container").addEventListener("click", () => {
+                            window.location.href = "singleview.html?id=" + post.id;
+                            console.log(post.id);
+                        });
+
+                        dest.appendChild(klon);
+
                     }
 
-                    dest.appendChild(klon);
 
                 }
 
