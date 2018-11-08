@@ -43,7 +43,9 @@
             cursor: pointer;
             transition: .4s;
 
-            /*     display: none;
+            /* GAMLE KNAP
+
+            display: none;
             border: solid 2px var(--roed);
             padding: 5px;
             width: 10vw;
@@ -179,7 +181,7 @@
 
 
         async function hentJson() {
-            let myJson = await fetch("http://mboegvald.dk/kea/07-cms/huset/wordpress/wp-json/wp/v2/events/?per_page=50");
+            let myJson = await fetch("http://www.davidfraenkeldesigns.dk/kea/2-semester/huset/wordpress/wp-json/wp/v2/events");
             wpJSON = await myJson.json();
             visJson();
         }
