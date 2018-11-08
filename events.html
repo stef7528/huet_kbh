@@ -32,6 +32,7 @@
         }
 
         .post-container button {
+            display: none;
             border: 2px solid var(--roed);
             background-color: var(--lyseroed);
             color: var(--blaa);
@@ -79,6 +80,10 @@
             margin: 7px;
         }
 
+        [data-overskrift] {
+            min-height: 66px;
+        }
+
         .flex-pris {
             display: flex;
             justify-content: space-between;
@@ -89,6 +94,7 @@
         [data-pris] {
             padding-top: 10px;
         }
+
         .flex-genre {
             display: flex;
             justify-content: space-between;
@@ -179,7 +185,7 @@
 
 
         async function hentJson() {
-            let myJson = await fetch("http://mboegvald.dk/kea/07-cms/huset/wordpress/wp-json/wp/v2/events/?per_page=50");
+            let myJson = await fetch("http://davidfraenkeldesigns.dk/kea/2-semester/huset/wordpress/wp-json/wp/v2/events/?per_page=50");
             wpJSON = await myJson.json();
             visJson();
         }
@@ -202,26 +208,26 @@
             console.log("visJson");
 
             wpJSON.forEach(post => {
-                if (post.acf.Events == eventFilter || eventFilter == "Menu") {
+                if (post.acf.events == eventFilter || eventFilter == "Menu") {
                     console.log("ifstatement")
                     let klon = myTemplate.cloneNode(true).content;
-                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
+                    klon.querySelector("[data-overskrift]").textContent = post.acf.titel;
 
-                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
+                    klon.querySelector("[data-genre]").textContent = post.acf.genre;
 
-                    klon.querySelector("[data-billede]").src = post.acf.Billede;
+                    klon.querySelector("[data-billede]").src = post.acf.billede;
 
                     /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
 
-                    klon.querySelector("[data-lokation]").textContent = post.acf.Lokation;
+                    klon.querySelector("[data-lokation]").textContent = post.acf.sted;
 
-                    klon.querySelector("[data-dato]").textContent = post.acf.Dato;
+                    klon.querySelector("[data-dato]").textContent = post.acf.dato;
 
-                    klon.querySelector("[data-tid]").textContent = "Kl. " + post.acf.Tid;
+                    klon.querySelector("[data-tid]").textContent = "Kl. " + post.acf.tid;
 
-                    klon.querySelector("[data-pris]").textContent = "Pris: " + post.acf.Pris + ",-";
+                    klon.querySelector("[data-pris]").textContent = "Pris: " + post.acf.pris + ",-";
 
-                    if (post.acf.Buy == true) {
+                    if (post.acf.buy == true) {
 
                         klon.querySelector("[data-button]").style.display = "block";
 

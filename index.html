@@ -11,7 +11,7 @@
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-    <link rel="manifest" href="site.webmanifest">
+    <!--<link rel="manifest" href="site.webmanifest">-->
     <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
@@ -34,7 +34,7 @@
             margin: 0;
             padding: 0;
             font-family: "Avenir", Verdana, sans-serif;
-            background: var(--lyseblaa);
+            background: #FFF;
 
         }
 
@@ -46,9 +46,16 @@
 
         .post-container button {
             display: none;
-            border: solid 2px var(--roed);
-            padding: 5px;
-            width: 50px;
+            border: 2px solid var(--roed);
+            background-color: var(--lyseroed);
+            color: var(--blaa);
+            border-radius: 2em;
+            height: 40px;
+            min-width: 125px;
+            padding: 0 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: .4s;
         }
 
         #indhold {
@@ -74,22 +81,34 @@
 
         }
 
-        article div {
-            border-bottom: 1px solid #000;
-        }
-
         .post-container p,
-        .post-container img,
+        [data-billede],
         .post-container h2,
         .post-container button {
-            margin: 7px;
+            margin: 7px 0;
         }
 
-        data-pris {
-            margin: 0 10px
+        /*[data-overskrift] {
+            min-height: 66px;
         }
-
+*/
         .flex-pris {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #000;
+            padding-bottom: 10px;
+        }
+
+        [data-pris] {
+            padding-top: 10px;
+        }
+
+        .flex-genre {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .flex-dato {
             display: flex;
             justify-content: space-between;
         }
@@ -184,6 +203,10 @@
             .mobileNav {
                 width: 600px;
                 margin: 0 auto;
+            }
+
+            [data-overskrift] {
+                min-height: 99px;
             }
 
         }
@@ -395,16 +418,22 @@
             <h2 data-overskrift></h2>
 
             <div>
+                <div class="flex-genre">
+                    <p data-genre></p>
+                    <p data-lokation></p>
+                </div>
 
-                <p data-genre></p>
                 <img data-billede>
                 <!-- <p data-lang-beskrivelse></p>-->
-                <p data-dato></p>
-                <p data-lokation></p>
+                <div class="flex-dato">
+                    <p data-dato></p>
+                    <p data-tid></p>
+                </div>
                 <div class="flex-pris">
                     <p data-pris></p>
                     <button data-button>Køb</button>
                 </div>
+
 
 
             </div>
@@ -449,7 +478,7 @@
         }
 
         async function hentJson() {
-            let myJson = await fetch("http://mboegvald.dk/kea/07-cms/huset/wordpress/wp-json/wp/v2/events/?per_page=6");
+            let myJson = await fetch("http://davidfraenkeldesigns.dk/kea/2-semester/huset/wordpress/wp-json/wp/v2/events/?per_page=6");
             wpJSON = await myJson.json();
             visJson();
         }
@@ -464,34 +493,41 @@
             wpJSON.forEach(post => {
 
 
-                let klon = myTemplate.cloneNode(true).content;
+                    let klon = myTemplate.cloneNode(true).content;
 
-                if (post.acf.Events == "Film", "Musik", "Art", "Teater", "Stand_up", "Diverse") {
+                    if (post.acf.events == "Film", "Musik", "Art", "Teater", "Stand_up", "Diverse") {
 
-                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
+                        klon.querySelector("[data-overskrift]").textContent = post.acf.titel;
 
-                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
+                        klon.querySelector("[data-genre]").textContent = post.acf.genre;
 
-                    klon.querySelector("[data-billede]").src = post.acf.Billede;
+                        klon.querySelector("[data-billede]").src = post.acf.billede;
 
-                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
+                        /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
 
-                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
+                        klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.sted;
 
-                    klon.querySelector("[data-pris]").textContent = "Pris: " + post.acf.Pris + ",-";
+                        klon.querySelector("[data-pris]").textContent = "Pris: " + post.acf.pris + ",-";
 
-                    if (post.acf.Buy == true) {
+                        klon.querySelector("[data-dato]").textContent = post.acf.dato;
 
-                        klon.querySelector("[data-button]").style.display = "block";
+                        klon.querySelector("[data-tid]").textContent = "Kl. " + post.acf.tid;
 
+                        if (post.acf.buy == true) {
+
+                            klon.querySelector("[data-button]").style.display = "block";
+
+                        }
                     }
+
+                    dest.appendChild(klon);
+
                 }
 
-
-                dest.appendChild(klon);
-
-            })
+            )
         }
+
+
         document.querySelector(".logoPil").addEventListener("click", toggleMenu);
 
         document.querySelector(".logoPil").addEventListener("click", function() {
