@@ -84,7 +84,6 @@
         .flex-pris {
             display: flex;
             justify-content: space-between;
-            border-bottom: 1px solid #000;
             padding-bottom: 10px;
         }
 
@@ -124,19 +123,19 @@
                 grid-gap: 20px;
             }
 
-                [data-overskrift] {
+            [data-overskrift] {
                 min-height: 99px;
             }
 
-                    .post-container {
-            transition: .4s;
-        }
+            .post-container {
+                transition: .4s;
+            }
 
-        .post-container:hover {
-            border: 2px solid black;
-            transform: scale(1.1);
+            .post-container:hover {
+                border: 2px solid black;
+                transform: scale(1.1);
+            }
         }
-    }
     </style>
 </head>
 
@@ -237,8 +236,8 @@
 
                     klon.querySelector("[data-pris]").textContent = "Pris: " + post.acf.pris + ",-";
 
-                     klon.querySelector(".post-container").addEventListener("click", () => {
-                    window.location.href = "singleview.html?id=" + post.id;
+                    klon.querySelector(".post-container").addEventListener("click", () => {
+                        window.location.href = "singleview.html?id=" + post.id;
                     });
 
                     if (post.acf.buy == true) {
@@ -251,8 +250,6 @@
 
             })
         }
-
-
     </script>
 
 </body>

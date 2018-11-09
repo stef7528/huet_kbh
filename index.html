@@ -50,7 +50,7 @@
             min-height: 100vh;
             display: grid;
             grid-template-rows: 1fr auto;
-            background: var(--lyseblaa);
+            background: #FFF;
         }
 
         .post-container button {
@@ -92,12 +92,14 @@
             padding: 1em;
             grid-row: span 1;
             transition: .4s;
+            background-color: var(--lyseblaa);
 
         }
 
         .post-container:hover {
             border: 2px solid var(--roed);
             transform: scale(1.1);
+            background-color: var(--lyseroed);
         }
 
         .post-container p,
@@ -209,74 +211,7 @@
             }
         }
 
-        @media screen and (min-width:650px) {
-            .slideshow {
-                width: 70vw;
 
-            }
-
-            .data-container {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .data-container {
-
-                max-width: 600px;
-
-
-            }
-
-            .mobileNav {
-                width: 600px;
-                margin: 0 auto;
-            }
-
-            [data-overskrift] {
-                min-height: 99px;
-            }
-
-        }
-
-        @media screen and (min-width:1000px) {
-            .data-container {
-                grid-template-columns: 1fr 1fr 1fr;
-                grid-gap: 20px;
-
-            }
-
-            .data-container {
-
-                max-width: 850px;
-
-            }
-
-            .slideshow {
-                width: 50vw;
-
-            }
-
-            .mobileNav {
-                width: 850px;
-            }
-
-        }
-
-        @media screen and (min-width:1300px) {
-            .slideshow {
-                width: 35vw;
-
-            }
-
-            .data-container {
-
-                max-width: 1300px;
-
-            }
-
-            .mobileNav {
-                width: 1300px;
-            }
-        }
 
         header {
             height: 150px;
@@ -322,7 +257,7 @@
 
         }
 
-        li {
+        .mobile_nav_menu li {
             list-style: none;
             text-align: left;
             padding: 10px;
@@ -363,15 +298,151 @@
             top: 0;
             left: 0;
             text-decoration: none;
-
             z-index: 10;
-
             background-color: #FFF;
-
             opacity: 0;
-
             filter: alpha(opacity=1);
 
+        }
+
+        .desktopNav {
+            display: none;
+        }
+
+        .desktop_nav_menu {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            margin: 0;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+            pointer-events: none;
+            top: -33px;
+            left: 30%;
+            width: 70%;
+        }
+
+        .desktop_nav_menu li {
+            display: flex;
+            justify-content: center;
+            width: 30%;
+            max-width: 100px;
+        }
+
+        .desktop_nav_menu a {
+            color: var(--roed);
+            text-decoration: none;
+            font-size: 1.2em;
+
+        }
+
+
+        @media screen and (min-width:650px) {
+            .slideshow {
+                width: 70vw;
+
+            }
+
+            .data-container {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .data-container {
+
+                max-width: 600px;
+
+
+            }
+
+            .navBar {
+                width: 600px;
+                margin: 0 auto;
+            }
+
+            [data-overskrift] {
+                min-height: 99px;
+            }
+
+            .mobile_nav_menu {
+                display: none;
+            }
+
+            .rotatePil {
+                transform: rotate(0);
+            }
+
+            .desktopNav {
+                display: block;
+                width: 100%;
+            }
+
+
+
+
+
+        }
+
+        @media screen and (min-width:800px) {
+            .desktop_nav_menu {
+
+                left: 40%;
+                width: 70%;
+            }
+
+        }
+
+        @media screen and (min-width:1000px) {
+            .data-container {
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-gap: 20px;
+
+            }
+
+            .data-container {
+
+                max-width: 850px;
+
+            }
+
+            .slideshow {
+                width: 50vw;
+
+            }
+
+            .navBar {
+                width: 850px;
+            }
+
+            .desktop_nav_menu {
+
+                left: 55%;
+                width: 50%;
+            }
+
+        }
+
+        @media screen and (min-width:1300px) {
+            .slideshow {
+                width: 50vw;
+
+            }
+
+            .data-container {
+
+                max-width: 1300px;
+
+            }
+
+            .navBar {
+                width: 1300px;
+            }
+
+            .desktop_nav_menu {
+
+                left: 60%;
+                width: 35%;
+            }
         }
     </style>
 </head>
@@ -380,7 +451,11 @@
 
     <header>
 
-        <nav class="mobileNav">
+
+
+
+
+        <nav class="navBar">
 
             <div class="logo">
 
@@ -392,6 +467,20 @@
                     <li><a href="#">Kontakt</a></li>
                 </ul>
                 <a class="indexLink" href="index.html"></a>
+
+
+
+
+
+            </div>
+
+            <div class="desktopNav">
+                <ul class="desktop_nav_menu">
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="#">Venues</a></li>
+                    <li><a href="#">Om Huset</a></li>
+                    <li><a href="#">Kontakt</a></li>
+                </ul>
             </div>
 
 
@@ -472,7 +561,11 @@
         </article>
     </template>
 
+    <footer>
 
+
+
+    </footer>
     <script>
         let wpJSON;
         let dest = document.querySelector(".data-container");
@@ -565,14 +658,6 @@
             )
         }
 
-
-        document.querySelector(".logoPil").addEventListener("click", toggleMenu);
-
-        document.querySelector(".logoPil").addEventListener("click", function() {
-            event.stopPropagation();
-        });
-
-
         function toggleMenu() {
             document.querySelector(".logoPil").classList.toggle("rotatePil");
 
@@ -580,6 +665,11 @@
             document.querySelector("ul").classList.toggle("open_nav");
 
         }
+        document.querySelector(".logoPil").addEventListener("click", toggleMenu);
+
+        document.querySelector(".logoPil").addEventListener("click", function() {
+            event.stopPropagation();
+        });
     </script>
 
 </body>
