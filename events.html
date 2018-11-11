@@ -49,13 +49,13 @@
 
         #indhold {
             width: 100vw;
-            background: var(--lyseblaa);
         }
 
         .data-container {
             display: grid;
             max-width: 1300px;
             margin: 0 auto;
+
 
         }
 
@@ -66,7 +66,7 @@
         .post-container {
             padding: 1em;
             grid-row: span 1;
-
+            background: var(--lyseblaa);
         }
 
 
@@ -117,6 +117,23 @@
 
         }
 
+        .nyhedsbrev {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 50px;
+            background: var(--blaa);
+            opacity: 0.9;
+        }
+
+        .nyhedsbrev p {
+            color: white;
+            text-align: center;
+             line-height: 50px;
+            vertical-align: middle;
+        }
+
+
         @media screen and (min-width:1000px) {
             .data-container {
                 grid-template-columns: 1fr 1fr 1fr;
@@ -129,11 +146,13 @@
 
             .post-container {
                 transition: .4s;
+
             }
 
             .post-container:hover {
                 border: 2px solid black;
                 transform: scale(1.1);
+                background: var(--lyseroed);
             }
         }
     </style>
@@ -178,11 +197,16 @@
                     <button data-button>Køb</button>
                 </div>
             </div>
-
-
-
         </article>
     </template>
+
+    <article class="nyhedsbrev">
+            <div>
+                <p>Få nyheder, anbefalinger og særlige konkurrencer og tilbud ved at tilmelde dig vores nyhedsbrev - <b>Tilmed dig her</b></p>
+            </div>
+
+    </article>
+
 
 
     <script>
