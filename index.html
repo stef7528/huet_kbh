@@ -8,12 +8,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--<link rel="stylesheet" href="style.css">-->
+
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-    <link rel="manifest" href="site.webmanifest">
+
+    <!--<link rel="manifest" href="site.webmanifest">-->
     <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+
     <meta name="theme-color" content="#ffffff">
 
 
@@ -34,7 +42,7 @@
             margin: 0;
             padding: 0;
             font-family: "Avenir", Verdana, sans-serif;
-            background: var(--lyseblaa);
+
 
         }
 
@@ -42,13 +50,28 @@
             min-height: 100vh;
             display: grid;
             grid-template-rows: 1fr auto;
+            /*background: #FFF;*/
+            background-image: url(pics/baggrund.jpg);
+
         }
+
 
         .post-container button {
             display: none;
-            border: solid 2px var(--roed);
-            padding: 5px;
-            width: 50px;
+            border: 2px solid var(--roed);
+            background-color: var(--lyseroed);
+            color: var(--blaa);
+            border-radius: 2em;
+            height: 40px;
+            min-width: 125px;
+            padding: 0 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: .5s;
+        }
+
+        .post-container button:hover {
+            background-color: rgb(255, 179, 179);
         }
 
         #indhold {
@@ -60,6 +83,7 @@
             display: grid;
             max-width: 400px;
             margin: 0 auto;
+            grid-gap: 10px;
 
         }
 
@@ -70,26 +94,44 @@
         .post-container {
             padding: 1em;
             grid-row: span 1;
-
+            transition: .4s;
+            background-color: var(--lyseblaa);
 
         }
 
-        article div {
-            border-bottom: 1px solid #000;
+        .post-container:hover {
+            border: 2px solid var(--roed);
+            transform: scale(1.1);
+            background-color: var(--lyseroed);
         }
 
         .post-container p,
-        .post-container img,
+        [data-billede],
         .post-container h2,
         .post-container button {
-            margin: 7px;
+            margin: 7px 0;
         }
 
-        data-pris {
-            margin: 0 10px
+        /*[data-overskrift] {
+            min-height: 66px;
         }
-
+*/
         .flex-pris {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 10px;
+        }
+
+        [data-pris] {
+            padding-top: 10px;
+        }
+
+        .flex-genre {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .flex-dato {
             display: flex;
             justify-content: space-between;
         }
@@ -98,6 +140,7 @@
             width: 100vw;
             position: relative;
             margin: auto;
+            margin-bottom: 50px;
         }
 
         .slideshow img {
@@ -133,11 +176,17 @@
             color: #FFF;
             font-weight: bold;
             font-size: 3em;
-            transition: 0.6s ease;
+            transition: 0.3s ease;
             border-radius: 0 3px 3px 0;
             margin: 0 20px;
             background-color: transparent;
         }
+
+        .prev:hover,
+        .next:hover {
+            font-size: 3.2em;
+        }
+
 
         .next {
             right: 0;
@@ -165,73 +214,15 @@
             }
         }
 
-        @media screen and (min-width:650px) {
-            .slideshow {
-                width: 70vw;
 
-            }
-
-            .data-container {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .data-container {
-
-                max-width: 600px;
-
-            }
-
-            .mobileNav {
-                width: 600px;
-                margin: 0 auto;
-            }
-
-        }
-
-        @media screen and (min-width:1000px) {
-            .data-container {
-                grid-template-columns: 1fr 1fr 1fr;
-                grid-gap: 20px;
-
-            }
-
-            .data-container {
-
-                max-width: 850px;
-
-            }
-
-            .slideshow {
-                width: 50vw;
-
-            }
-
-            .mobileNav {
-                width: 850px;
-            }
-
-        }
-
-        @media screen and (min-width:1300px) {
-            .slideshow {
-                width: 35vw;
-
-            }
-
-            .data-container {
-
-                max-width: 1300px;
-
-            }
-
-            .mobileNav {
-                width: 1300px;
-            }
-        }
 
         header {
             height: 150px;
             width: 100%;
+            background-color: transparent;
+            margin-bottom: 50px;
+            z-index: 1;
+            pointer-events: all;
         }
 
         .logo {
@@ -248,8 +239,9 @@
             position: relative;
             width: 70px;
             height: 60px;
-            left: 80px;
-            top: 83px;
+            left: 85px;
+            top: 13.5px;
+            /*top: 83px;*/
             background-color: transparent;
             cursor: pointer;
             transition: 0.5s;
@@ -259,7 +251,6 @@
 
         .mobile_nav_menu {
             position: relative;
-            z-index: 1;
             left: calc(150px - 60px);
             top: 80px;
             width: 100px;
@@ -270,7 +261,7 @@
 
         }
 
-        li {
+        .mobile_nav_menu li {
             list-style: none;
             text-align: left;
             padding: 10px;
@@ -311,15 +302,167 @@
             top: 0;
             left: 0;
             text-decoration: none;
-
             z-index: 10;
-
             background-color: #FFF;
-
             opacity: 0;
-
             filter: alpha(opacity=1);
 
+        }
+
+        .desktopNav {
+            display: none;
+        }
+
+        .desktop_nav_menu {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            margin: 0;
+            justify-content: space-between;
+            position: relative;
+            z-index: 10;
+            pointer-events: none;
+            top: -33px;
+            left: 30%;
+            width: 70%;
+        }
+
+        .desktop_nav_menu li {
+            display: flex;
+            justify-content: center;
+            width: 30%;
+            max-width: 100px;
+        }
+
+        .desktop_nav_menu a {
+            color: var(--roed);
+            text-decoration: none;
+            font-size: 1.2em;
+
+        }
+
+        .footerContainer {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+
+        }
+
+        .footerBox {
+            background-color: white;
+            width: 100%;
+        }
+
+
+        @media screen and (min-width:650px) {
+            .slideshow {
+                width: 70vw;
+
+            }
+
+            .data-container {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .data-container {
+
+                max-width: 600px;
+
+
+            }
+
+            .navBar {
+                width: 600px;
+                margin: 0 auto;
+            }
+
+            [data-overskrift] {
+                min-height: 99px;
+            }
+
+            .mobile_nav_menu {
+                display: none;
+            }
+
+            .rotatePil {
+                transform: rotate(0);
+            }
+
+            .desktopNav {
+                display: block;
+                width: 100%;
+
+            }
+
+            .desktop_nav_menu {
+                pointer-events: all;
+            }
+
+
+
+
+
+        }
+
+        @media screen and (min-width:800px) {
+            .desktop_nav_menu {
+
+                left: 40%;
+                width: 70%;
+            }
+
+        }
+
+        @media screen and (min-width:1000px) {
+            .data-container {
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-gap: 20px;
+
+            }
+
+            .data-container {
+
+                max-width: 850px;
+
+            }
+
+            .slideshow {
+                width: 50vw;
+
+            }
+
+            .navBar {
+                width: 850px;
+            }
+
+            .desktop_nav_menu {
+
+                left: 55%;
+                width: 50%;
+            }
+
+        }
+
+        @media screen and (min-width:1300px) {
+            .slideshow {
+                width: 50vw;
+
+            }
+
+            .data-container {
+
+                max-width: 1300px;
+
+            }
+
+            .navBar {
+                width: 1300px;
+            }
+
+            .desktop_nav_menu {
+
+                left: 60%;
+                width: 35%;
+            }
         }
     </style>
 </head>
@@ -328,18 +471,36 @@
 
     <header>
 
-        <nav class="mobileNav">
+
+
+
+
+        <nav class="navBar">
 
             <div class="logo">
 
                 <img class="logoPil" src="pics/logoer-04.png">
                 <ul class="mobile_nav_menu">
-                    <li><a href="">Events</a></li>
-                    <li><a href="">Venues</a></li>
-                    <li><a href="">Om Huset</a></li>
-                    <li><a href="">Kontakt</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="#">Venues</a></li>
+                    <li><a href="#">Om Huset</a></li>
+                    <li><a href="#">Kontakt</a></li>
                 </ul>
                 <a class="indexLink" href="index.html"></a>
+
+
+
+
+
+            </div>
+
+            <div class="desktopNav">
+                <ul class="desktop_nav_menu">
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="#">Venues</a></li>
+                    <li><a href="#">Om Huset</a></li>
+                    <li><a href="#">Kontakt</a></li>
+                </ul>
             </div>
 
 
@@ -361,6 +522,7 @@
         </nav>-->
 
     </header>
+
 
     <div class="slideshow">
 
@@ -395,24 +557,46 @@
             <h2 data-overskrift></h2>
 
             <div>
+                <div class="flex-genre">
+                    <p data-genre></p>
+                    <p data-lokation></p>
+                </div>
 
-                <p data-genre></p>
                 <img data-billede>
                 <!-- <p data-lang-beskrivelse></p>-->
-                <p data-dato></p>
-                <p data-lokation></p>
+                <div class="flex-dato">
+                    <p data-dato></p>
+                    <p data-tid></p>
+                </div>
                 <div class="flex-pris">
                     <p data-pris></p>
                     <button data-button>Køb</button>
                 </div>
 
 
+
             </div>
 
-            <!--<div class="divider"></div>-->
+
 
         </article>
     </template>
+
+    <footer>
+
+        <div class="footerCotainer">
+            <div class="footerBox">
+
+            </div>
+            <div class="footerBox">
+
+            </div>
+            <div class="footerBox">
+
+            </div>
+        </div>
+
+    </footer>
 
 
     <script>
@@ -427,6 +611,30 @@
             showSlides(slideNumber += n);
         }
 
+
+
+        function autoSlide() {
+            console.log(slideNumber);
+
+            if (slideNumber < 4) {
+                slideNumber++;
+                console.log("1");
+            }
+            if (slideNumber > 3) {
+                slideNumber = 1;
+                console.log("2");
+            }
+
+
+
+            showSlides(slideNumber);
+            setTimeout(autoSlide, 5000);
+
+
+        }
+
+
+        setTimeout(autoSlide, 5000);
 
 
         function showSlides(n) {
@@ -448,8 +656,9 @@
 
         }
 
+
         async function hentJson() {
-            let myJson = await fetch("http://mboegvald.dk/kea/07-cms/huset/wordpress/wp-json/wp/v2/events/?per_page=6");
+            let myJson = await fetch("http://davidfraenkeldesigns.dk/kea/2-semester/huset/wordpress/wp-json/wp/v2/events/?per_page=6");
             wpJSON = await myJson.json();
             visJson();
         }
@@ -458,46 +667,54 @@
 
         function visJson() {
             let myTemplate = document.querySelector(".data-template");
+
             console.log(wpJSON);
 
 
             wpJSON.forEach(post => {
 
 
-                let klon = myTemplate.cloneNode(true).content;
+                    let klon = myTemplate.cloneNode(true).content;
 
-                if (post.acf.Events == "Film", "Musik", "Art", "Teater", "Stand_up", "Diverse") {
+                    if (post.acf.events == "Film", "Musik", "Art", "Teater", "Stand_up", "Diverse") {
 
-                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
+                        klon.querySelector("[data-overskrift]").textContent = post.acf.titel;
 
-                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
+                        klon.querySelector("[data-genre]").textContent = post.acf.genre;
 
-                    klon.querySelector("[data-billede]").src = post.acf.Billede;
+                        klon.querySelector("[data-billede]").src = post.acf.billede;
 
-                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
+                        /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
 
-                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
+                        klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.sted;
 
-                    klon.querySelector("[data-pris]").textContent = "Pris: " + post.acf.Pris + ",-";
+                        klon.querySelector("[data-pris]").textContent = "Pris: " + post.acf.pris + ",-";
 
-                    if (post.acf.Buy == true) {
+                        klon.querySelector("[data-dato]").textContent = post.acf.dato;
 
-                        klon.querySelector("[data-button]").style.display = "block";
+                        klon.querySelector("[data-tid]").textContent = "Kl. " + post.acf.tid;
+
+                        if (post.acf.buy == true) {
+
+                            klon.querySelector("[data-button]").style.display = "block";
+
+
+                        }
+
+                        klon.querySelector(".post-container").addEventListener("click", () => {
+                            window.location.href = "singleview.html?id=" + post.id;
+                            console.log(post.id);
+                        });
+
+                        dest.appendChild(klon);
 
                     }
+
+
                 }
 
-
-                dest.appendChild(klon);
-
-            })
+            )
         }
-        document.querySelector(".logoPil").addEventListener("click", toggleMenu);
-
-        document.querySelector(".logoPil").addEventListener("click", function() {
-            event.stopPropagation();
-        });
-
 
         function toggleMenu() {
             document.querySelector(".logoPil").classList.toggle("rotatePil");
@@ -506,6 +723,11 @@
             document.querySelector("ul").classList.toggle("open_nav");
 
         }
+        document.querySelector(".logoPil").addEventListener("click", toggleMenu);
+
+        document.querySelector(".logoPil").addEventListener("click", function() {
+            event.stopPropagation();
+        });
     </script>
 
 </body>

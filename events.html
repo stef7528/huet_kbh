@@ -46,7 +46,6 @@
             font-size: 16px;
             cursor: pointer;
             transition: .4s;
-
         }
 
         #indhold {
@@ -137,17 +136,11 @@
 
         .nyhedsbrev p {
             color: white;
-            font-size: 10px;
-            line-height: 18px;
-            vertical-align: middle;
             text-align: center;
+            font-size: 10px;
+            vertical-align: middle;
+            line-height: 18px;
 
-        }
-
-        .close_nyhedsbrev {
-            cursor: pointer;
-            font-size: 15px;
-            margin-left: 30px;
         }
 
 
@@ -181,9 +174,6 @@
                 font-size: 15px;
             }
 
-            .close_nyhedsbrev {
-                font-size: 25px;
-            }
         }
     </style>
 </head>
@@ -231,8 +221,7 @@
     </template>
 
     <article class="nyhedsbrev">
-            <p>Få nyheder, anbefalinger og særlige konkurrencer og tilbud ved at tilmelde dig vores nyhedsbrev - <a href="#"><b>Tilmed dig her</b></a><span class="close_nyhedsbrev">&#10005;</span></p>
-
+            <p>Få nyheder, anbefalinger og særlige konkurrencer og tilbud ved at tilmelde dig vores nyhedsbrev - <a href="#"><b>Tilmed dig her</b></a></p>
     </article>
 
 
@@ -246,7 +235,6 @@
 
 
         async function hentJson() {
-
             let myJson = await fetch("http://davidfraenkeldesigns.dk/kea/2-semester/huset/wordpress/wp-json/wp/v2/events/?per_page=50");
             wpJSON = await myJson.json();
             visJson();
@@ -279,6 +267,8 @@
 
                     klon.querySelector("[data-billede]").src = post.acf.billede;
 
+                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
+
                     klon.querySelector("[data-lokation]").textContent = post.acf.sted;
 
                     klon.querySelector("[data-dato]").textContent = post.acf.dato;
@@ -301,12 +291,6 @@
 
             })
         }
-
-        document.querySelector(".close_nyhedsbrev").addEventListener("click", () => {
-            console.log("Luk nyhedsbrev");
-            document.querySelector(".nyhedsbrev").style.display = "none";
-
-        })
 
     </script>
 
