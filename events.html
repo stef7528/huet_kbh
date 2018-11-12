@@ -29,9 +29,13 @@
             min-height: 100%;
             display: grid;
             grid-template-rows: 1fr auto;
+            background-image: url(pics/baggrund.jpg);
         }
 
+
+
         .post-container button {
+            display: none;
             border: 2px solid var(--roed);
             background-color: var(--lyseroed);
             color: var(--blaa);
@@ -43,24 +47,17 @@
             cursor: pointer;
             transition: .4s;
 
-            /* GAMLE KNAP
-
-            display: none;
-            border: solid 2px var(--roed);
-            padding: 5px;
-            width: 10vw;
-            background-color: var(--lyseblaa);*/
         }
 
         #indhold {
             width: 100vw;
-            background: var(--lyseblaa);
         }
 
         .data-container {
             display: grid;
             max-width: 1300px;
             margin: 0 auto;
+
 
         }
 
@@ -71,8 +68,9 @@
         .post-container {
             padding: 1em;
             grid-row: span 1;
-
+            background: var(--lyseblaa);
         }
+
 
         .post-container p,
         .post-container img,
@@ -81,16 +79,20 @@
             margin: 7px;
         }
 
+        [data-overskrift] {
+            min-height: 66px;
+        }
+
         .flex-pris {
             display: flex;
             justify-content: space-between;
-            border-bottom: 1px solid #000;
             padding-bottom: 10px;
         }
 
         [data-pris] {
             padding-top: 10px;
         }
+
         .flex-genre {
             display: flex;
             justify-content: space-between;
@@ -103,24 +105,84 @@
         #filtrerings_knapper {
             display: flex;
             justify-content: center;
+            padding: 30px;
 
         }
 
         .menu-item {
             border: none;
-            border: 1px solid var(--groen);
+            border: 1px solid white;
             margin: 7px;
             background-color: transparent;
             font-size: 10px;
             padding: 1px;
+            color: white;
 
         }
+
+        .nyhedsbrev {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 40px;
+            background: var(--blaa);
+            opacity: 0.9;
+        }
+
+        .nyhedsbrev a {
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .nyhedsbrev p {
+            color: white;
+            font-size: 10px;
+            line-height: 18px;
+            vertical-align: middle;
+            text-align: center;
+
+        }
+
+        .close_nyhedsbrev {
+            cursor: pointer;
+            font-size: 15px;
+            margin-left: 30px;
+        }
+
 
         @media screen and (min-width:1000px) {
             .data-container {
                 grid-template-columns: 1fr 1fr 1fr;
                 grid-gap: 20px;
+            }
 
+            [data-overskrift] {
+                min-height: 99px;
+            }
+
+            .post-container {
+                transition: .4s;
+
+            }
+
+            .post-container:hover {
+                border: 2px solid black;
+                transform: scale(1.1);
+                background: var(--lyseroed);
+            }
+
+            .nyhedsbrev {
+                height: 50px;
+            }
+
+            .nyhedsbrev p {
+                line-height: 50px;
+                font-size: 15px;
+            }
+
+            .close_nyhedsbrev {
+                font-size: 25px;
             }
         }
     </style>
@@ -165,11 +227,14 @@
                     <button data-button>Køb</button>
                 </div>
             </div>
-
-
-
         </article>
     </template>
+
+    <article class="nyhedsbrev">
+            <p>Få nyheder, anbefalinger og særlige konkurrencer og tilbud ved at tilmelde dig vores nyhedsbrev - <a href="#"><b>Tilmed dig her</b></a><span class="close_nyhedsbrev">&#10005;</span></p>
+
+    </article>
+
 
 
     <script>
@@ -181,7 +246,8 @@
 
 
         async function hentJson() {
-            let myJson = await fetch("http://www.davidfraenkeldesigns.dk/kea/2-semester/huset/wordpress/wp-json/wp/v2/events");
+
+            let myJson = await fetch("http://davidfraenkeldesigns.dk/kea/2-semester/huset/wordpress/wp-json/wp/v2/events/?per_page=50");
             wpJSON = await myJson.json();
             visJson();
         }
@@ -204,26 +270,28 @@
             console.log("visJson");
 
             wpJSON.forEach(post => {
-                if (post.acf.Events == eventFilter || eventFilter == "Menu") {
+                if (post.acf.events == eventFilter || eventFilter == "Menu") {
                     console.log("ifstatement")
                     let klon = myTemplate.cloneNode(true).content;
-                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
+                    klon.querySelector("[data-overskrift]").textContent = post.acf.titel;
 
-                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
+                    klon.querySelector("[data-genre]").textContent = post.acf.genre;
 
-                    klon.querySelector("[data-billede]").src = post.acf.Billede;
+                    klon.querySelector("[data-billede]").src = post.acf.billede;
 
-                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
+                    klon.querySelector("[data-lokation]").textContent = post.acf.sted;
 
-                    klon.querySelector("[data-lokation]").textContent = post.acf.Lokation;
+                    klon.querySelector("[data-dato]").textContent = post.acf.dato;
 
-                    klon.querySelector("[data-dato]").textContent = post.acf.Dato;
+                    klon.querySelector("[data-tid]").textContent = "Kl. " + post.acf.tid;
 
-                    klon.querySelector("[data-tid]").textContent = "Kl. " + post.acf.Tid;
+                    klon.querySelector("[data-pris]").textContent = "Pris: " + post.acf.pris + ",-";
 
-                    klon.querySelector("[data-pris]").textContent = "Pris: " + post.acf.Pris + ",-";
+                    klon.querySelector(".post-container").addEventListener("click", () => {
+                        window.location.href = "singleview.html?id=" + post.id;
+                    });
 
-                    if (post.acf.Buy == true) {
+                    if (post.acf.buy == true) {
 
                         klon.querySelector("[data-button]").style.display = "block";
 
@@ -234,172 +302,12 @@
             })
         }
 
-        //        function visJson() {
-        //            let myTemplate = document.querySelector(".data-template");
-        //            console.log(wpJSON);
-        //            console.log("visJson");
-        //
-        //
-        //            wpJSON.forEach(post => {
-        //
-        //
-        //                let klon = myTemplate.cloneNode(true).content;
-        //
-        //
-        //                if (post.acf.Events == "Film") {
-        //
-        //                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
-        //
-        //                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
-        //
-        //                    klon.querySelector("[data-billede]").src = post.acf.Billede;
-        //
-        //                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
-        //
-        //                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
-        //
-        //                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
-        //
-        //                    if (post.acf.Buy == true) {
-        //
-        //                        klon.querySelector("[data-button]").style.display = "block";
-        //
-        //                    }
-        //
-        //
-        //                    /*  klon.querySelector("[data-koeb]").textContent = post.acf.Koeb;*/
-        //
-        //                } else if (post.acf.Events == "Musik") {
-        //
-        //                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
-        //
-        //                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
-        //
-        //                    klon.querySelector("[data-billede]").src = post.acf.Billede;
-        //
-        //                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
-        //
-        //                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
-        //
-        //                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
-        //
-        //                    if (post.acf.Buy == true) {
-        //
-        //                        klon.querySelector("[data-button]").style.display = "block";
-        //
-        //                    }
-        //
-        //
-        //                } else if (post.acf.Events == "Art") {
-        //
-        //                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
-        //
-        //                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
-        //
-        //                    klon.querySelector("[data-billede]").src = post.acf.Billede;
-        //
-        //                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
-        //
-        //                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
-        //
-        //                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
-        //
-        //                    if (post.acf.Buy == true) {
-        //
-        //                        klon.querySelector("[data-button]").style.display = "block";
-        //
-        //                    }
-        //
-        //
-        //                } else if (post.acf.Events == "Teater") {
-        //
-        //                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
-        //
-        //                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
-        //
-        //                    klon.querySelector("[data-billede]").src = post.acf.Billede;
-        //
-        //                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
-        //
-        //                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
-        //
-        //                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
-        //
-        //                    if (post.acf.Buy == true) {
-        //
-        //                        klon.querySelector("[data-button]").style.display = "block";
-        //
-        //                    }
-        //
-        //
-        //                } else if (post.acf.Events == "Stand_up") {
-        //
-        //                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
-        //
-        //                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
-        //
-        //                    klon.querySelector("[data-billede]").src = post.acf.Billede;
-        //
-        //                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
-        //
-        //                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
-        //
-        //                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
-        //
-        //                    if (post.acf.Buy == true) {
-        //
-        //                        klon.querySelector("[data-button]").style.display = "block";
-        //
-        //                    }
-        //
-        //
-        //                } else if (post.acf.Events == "Diverse") {
-        //
-        //                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
-        //
-        //                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
-        //
-        //                    klon.querySelector("[data-billede]").src = post.acf.Billede;
-        //
-        //                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
-        //
-        //                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
-        //
-        //                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
-        //
-        //                    if (post.acf.Buy == true) {
-        //
-        //                        klon.querySelector("[data-button]").style.display = "block";
-        //
-        //                    }
-        //
-        //
-        //                } else {
-        //                    klon.querySelector("[data-overskrift]").textContent = post.acf.Titel;
-        //
-        //                    klon.querySelector("[data-genre]").textContent = post.acf.Genre;
-        //
-        //                    klon.querySelector("[data-billede]").src = post.acf.Billede;
-        //
-        //                    /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;
-        //                     */
-        //                    klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.Lokation;
-        //
-        //                    klon.querySelector("[data-pris]").textContent = post.acf.Pris + ",-";
-        //
-        //                    if (post.acf.Buy == true) {
-        //
-        //                        klon.querySelector("[data-button]").style.display = "block";
-        //
-        //                    }
-        //
-        //                }
-        //
-        //
-        //                dest.appendChild(klon);
-        //
-        //            })
-        //        }
+        document.querySelector(".close_nyhedsbrev").addEventListener("click", () => {
+            console.log("Luk nyhedsbrev");
+            document.querySelector(".nyhedsbrev").style.display = "none";
+
+        })
+
     </script>
 
 </body>
