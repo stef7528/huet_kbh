@@ -24,7 +24,7 @@
 
 
         body {
-            background: var(--lyseblaa);
+            background-image: url(pics/baggrund.jpg);
         }
 
         img {
@@ -39,6 +39,11 @@
             display: flex;
             position: relative;
             left: 375px;
+            color: white;
+        }
+
+        p {
+            color: white;
         }
 
         .post-container button {
@@ -97,12 +102,30 @@
             padding: 10px;
             width: 50%;
         }
+
+        .back {
+            cursor: pointer;
+            position: relative;
+            width: auto;
+            color: #FFF;
+            font-weight: bold;
+            font-size: 3em;
+            transition: 0.3s ease;
+            border-radius: 0 3px 3px 0;
+            margin: 0 20px;
+            background-color: transparent;
+        }
+
+        .back:hover {
+            font-size: 3.2em;
+        }
+
     </style>
 </head>
 
 <body>
     <main class="container">
-        <button class="tilbageknap" onclick="goBack()">Tilbage</button>
+        <a class="back" onclick="goBack()">&#10094;</a>
         <section class="data-container">
             <article class="post-container">
 
@@ -176,6 +199,7 @@
         function goBack() {
             window.history.back();
         }
+
     </script>
 </body>
 
