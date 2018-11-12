@@ -76,7 +76,7 @@
 
         #indhold {
             width: 100vw;
-            margin-bottom: 30px;
+            margin-bottom: 50px;
 
         }
 
@@ -345,19 +345,103 @@
         footer {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-       /*     width: 100%;*/
-            background-color: black;
+            color: white;
+            /*color: var(--blaa);*/
 
 
         }
 
-        .footerBox {
-            background-color: white;
-           /* width: 100%;*/
-           /*margin: 20px 30px 0 30px;*/
+
+
+        #footerBox1 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 30px;
+            padding: 20px;
         }
 
 
+        .footerHeader {
+            font-size: .9em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        footer a {
+            text-decoration: none;
+            /*color: var(--blaa);*/
+            font-size: .7em;
+            transition: .4s;
+            color: white;
+        }
+
+        .infoBox p {
+            font-size: .7em;
+
+        }
+
+        .tid {
+            margin: 4px 0;
+        }
+
+        .venue {
+            font-size: .8em;
+            font-weight: bold;
+        }
+
+        footer li {
+            list-style: none;
+        }
+
+        footer a:hover {
+            color: rgba(36, 25, 93, 0.4);
+        }
+
+        #footerBox2 {
+            padding: 20px;
+            text-align: center;
+        }
+
+        #footerBox2 h2 {
+            font-size: 2em;
+            margin: 0 40px 20px;
+
+        }
+
+        #footerBox2 p {
+            font-size: 1.5em;
+        }
+
+        #submit, .email {
+            padding: 10px;
+            border-radius: 10px;
+
+        }
+        .email {
+            background-color: var(--lyseblaa);
+            border: 2px solid var(--blaa);
+        }
+
+        #submit {
+            background-color: transparent;
+            color: var(--lyseblaa);
+            transition: .3s;
+
+        }
+
+        #submit:hover {
+            border: 2px solid var(--lyseblaa);
+            box-shadow: 0 0 10px;
+        }
+
+        form {
+            margin: 40px 0;
+        }
+
+        #footerBox3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
         @media screen and (min-width:650px) {
             .slideshow {
                 width: 70vw;
@@ -584,16 +668,66 @@
     <footer>
 
 
-        <div class="footerBox">
-            <a href="" class="footerHeader">Udlejning</a>
-            <ul class="footerUl">
-                <li><a href="">Salon K</a></li>
-            </ul>
-        </div>
-        <div class="footerBox">
+        <div id="footerBox1">
+            <div class="infoBox">
+                <a href="" class="footerHeader">Udlejning</a>
+                <ul class="footerUl">
+                    <li><a href="">Salon K</a></li>
+                    <li><a href="">Balsalen</a></li>
+                    <li><a href="">Musikcaféen</a></li>
+                    <li><a href="">Stardust</a></li>
+                </ul>
+            </div>
+            <div class="infoBox">
+                <h3 class="footerHeader">Vær med!</h3>
+                <ul class="footerUl">
+                    <li><a href="">Events</a></li>
+                    <li><a href="">Skab events</a></li>
+                    <li><a href="">Bliv frivillig</a></li>
+                    <li><a href="">Ledige stillinger</a></li>
+                </ul>
+            </div>
+            <div class="infoBox">
+                <h3 class="footerHeader">Åbningstider</h3>
+                <ul class="footerUl">
+                    <li><a class="venue" href="">Reception</a></li>
+                    <p class="tid">Hverdage: 11.00-15.00</p>
+                    <li><a class="venue" href="">Bastard café</a></li>
+                    <p class="tid">Mandag-torsdag: 12.00-00.00</p>
+                    <p class="tid">Fredag-lørdag: 12.00-02.00</p>
+                    <p class="tid">Søndag: 12.00-00.00</p>
+                    <li><a class="venue" href="">Spisehuset fair</a></li>
+                    <p class="tid">Tirsdag-lørdag: 17.00-22.00</p>
+                </ul>
+            </div>
+            <div class="infoBox">
+                <a href="" class="footerHeader">Kontakt</a>
+                <ul class="footerUl">
+                    <li><a href="">FAQ</a></li>
+                    <li><a href="">Husets administration</a></li>
+                </ul>
+            </div>
 
         </div>
-        <div class="footerBox">
+        <div id="footerBox2">
+            <h2>Tilmeld dig vores nyhedsbrev nu!</h2>
+            <p>Ja tak, jeg vil gerne modtage nyheder om kommende events, gode tilbud osv.</p>
+
+            <form>
+                <input type="email" name="email" class="email" placeholder="Indtast email">
+                <button type="button" class="boksButton" id="submit">Tilmeld</button>
+            </form>
+        </div>
+        <div id="footerBox3">
+            <div class="sponsor">
+                <img src="" alt="">
+            </div>
+            <div class="sponsor">
+                <img src="" alt="">
+            </div>
+            <div class="sponsor">
+                <img src="" alt="">
+            </div>
 
         </div>
 
@@ -631,13 +765,13 @@
 
 
             showSlides(slideNumber);
-            setTimeout(autoSlide, 5000);
+
 
 
         }
 
 
-        setTimeout(autoSlide, 5000);
+        setInterval(autoSlide, 5000);
 
 
         function showSlides(n) {
