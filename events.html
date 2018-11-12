@@ -14,15 +14,12 @@
             --lyseblaa: rgb(233, 242, 253);
             --lysegroen: rgb(226, 238, 216);
             --lyseroed: rgb(252, 229, 241);
-
-
         }
 
         * {
             margin: 0;
             padding: 0;
             font-family: "Avenir", Verdana, sans-serif;
-
         }
 
         body {
@@ -31,8 +28,6 @@
             grid-template-rows: 1fr auto;
             background-image: url(pics/baggrund.jpg);
         }
-
-
 
         .post-container button {
             display: none;
@@ -56,8 +51,6 @@
             display: grid;
             max-width: 1300px;
             margin: 0 auto;
-
-
         }
 
         .data-container article img {
@@ -69,7 +62,6 @@
             grid-row: span 1;
             background: var(--lyseblaa);
         }
-
 
         .post-container p,
         .post-container img,
@@ -104,19 +96,29 @@
         #filtrerings_knapper {
             display: flex;
             justify-content: center;
-            padding: 30px;
+            padding: 12px;
+            background: rgba(36, 25, 93, 0.83);
+            margin-bottom: 5vw;
 
         }
 
         .menu-item {
             border: none;
-            border: 1px solid white;
+            border-radius: 40px;
             margin: 7px;
-            background-color: transparent;
-            font-size: 10px;
-            padding: 1px;
+            background: transparent;
+            font-size: 35px;
+            padding: 14px;
             color: white;
+            text-shadow: 1px 1px 2px red, 0 0 25px red, 0 0 5px darkred;
+            font-family: HUSET, Avenir;
+            transition: .3s;
 
+
+        }
+
+        .menu-item:hover {
+            font-size: 25px;
         }
 
         .nyhedsbrev {
@@ -140,9 +142,7 @@
             font-size: 10px;
             vertical-align: middle;
             line-height: 18px;
-
         }
-
 
         @media screen and (min-width:1000px) {
             .data-container {
@@ -156,7 +156,6 @@
 
             .post-container {
                 transition: .4s;
-
             }
 
             .post-container:hover {
@@ -173,7 +172,6 @@
                 line-height: 50px;
                 font-size: 15px;
             }
-
         }
     </style>
 </head>
@@ -183,13 +181,12 @@
 
     <main id="indhold">
         <div id="filtrerings_knapper">
-            <button class="menu-item" data-kategori="Menu">Alle Events</button>
-            <button class="menu-item" data-kategori="Musik">Musik</button>
-            <button class="menu-item" data-kategori="Teater">Teater</button>
-            <button class="menu-item" data-kategori="Film">Film</button>
-            <button class="menu-item" data-kategori="Art">Art</button>
-            <button class="menu-item" data-kategori="Stand up">Stand Up</button>
-            <button class="menu-item" data-kategori="Diverse">Diverse</button>
+            <button class="menu-item" data-kategori="Menu">ALLE EVENTS</button>
+            <button class="menu-item" data-kategori="Musik">MUSIK</button>
+            <button class="menu-item" data-kategori="Teater">TEATER</button>
+            <button class="menu-item" data-kategori="Film">FILM</button>
+            <button class="menu-item" data-kategori="Ord">ORD</button>
+            <button class="menu-item" data-kategori="Diverse">DIVERSE</button>
         </div>
         <div class="container">
             <section class="data-container"></section>
@@ -221,7 +218,7 @@
     </template>
 
     <article class="nyhedsbrev">
-            <p>Få nyheder, anbefalinger og særlige konkurrencer og tilbud ved at tilmelde dig vores nyhedsbrev - <a href="#"><b>Tilmed dig her</b></a></p>
+        <p>Få nyheder, anbefalinger og særlige konkurrencer og tilbud ved at tilmelde dig vores nyhedsbrev - <a href="#"><b>Tilmed dig her</b></a></p>
     </article>
 
 
@@ -230,16 +227,12 @@
         let wpJSON;
         let dest = document.querySelector(".data-container");
         let eventFilter = "Menu";
-
         document.addEventListener("DOMContentLoaded", hentJson);
-
-
         async function hentJson() {
             let myJson = await fetch("http://davidfraenkeldesigns.dk/kea/2-semester/huset/wordpress/wp-json/wp/v2/events/?per_page=50");
             wpJSON = await myJson.json();
             visJson();
         }
-
         document.querySelectorAll(".menu-item").forEach(knap => {
             knap.addEventListener("click", filtrering);
         });
@@ -251,47 +244,32 @@
             console.log("filtrering");
         }
 
-
         function visJson() {
             let myTemplate = document.querySelector(".data-template");
             console.log(wpJSON);
             console.log("visJson");
-
             wpJSON.forEach(post => {
                 if (post.acf.events == eventFilter || eventFilter == "Menu") {
                     console.log("ifstatement")
                     let klon = myTemplate.cloneNode(true).content;
                     klon.querySelector("[data-overskrift]").textContent = post.acf.titel;
-
                     klon.querySelector("[data-genre]").textContent = post.acf.genre;
-
                     klon.querySelector("[data-billede]").src = post.acf.billede;
-
                     /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
-
                     klon.querySelector("[data-lokation]").textContent = post.acf.sted;
-
                     klon.querySelector("[data-dato]").textContent = post.acf.dato;
-
                     klon.querySelector("[data-tid]").textContent = "Kl. " + post.acf.tid;
-
                     klon.querySelector("[data-pris]").textContent = "Pris: " + post.acf.pris + ",-";
-
                     klon.querySelector(".post-container").addEventListener("click", () => {
                         window.location.href = "singleview.html?id=" + post.id;
                     });
-
                     if (post.acf.buy == true) {
-
                         klon.querySelector("[data-button]").style.display = "block";
-
                     }
                     dest.appendChild(klon);
                 }
-
             })
         }
-
     </script>
 
 </body>
