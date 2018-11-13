@@ -96,14 +96,16 @@
             padding: 1em;
             grid-row: span 1;
             transition: .4s;
-            background-color: var(--lyseblaa);
+            background-color: rgba(33, 25, 25, 0.61);
+            color: rgba(211, 211, 211, 0.81);
 
         }
 
         .post-container:hover {
-            border: 2px solid var(--roed);
+border: 2px solid var(--roed);
             transform: scale(1.1);
-            background-color: var(--lyseroed);
+           background-color: rgba(33, 25, 25, 0.94);
+            color:  rgba(250, 250, 250, 0.81);
         }
 
         .post-container p,
@@ -338,7 +340,6 @@
         .desktop_nav_menu a {
             color: var(--roed);
             text-decoration: none;
-
             font-size: 1.3em;
             font-family: HUSET, Avenir;
 
@@ -385,6 +386,8 @@
 
         #footerBox2 p {
             font-size: 1.5em;
+            max-width: 400px;
+            margin: 0 auto;
         }
 
         #footerBox2 {
@@ -482,6 +485,8 @@
             background-color: transparent;
         }
         @media screen and (min-width:650px) {
+
+
             .slideshow {
                 width: 70vw;
 
@@ -543,6 +548,11 @@
                 width: 70%;
             }
 
+            #footerBox1 {
+                max-width: 500px;
+                margin: 0 auto 40px;
+            }
+
         }
 
         @media screen and (min-width:1000px) {
@@ -583,6 +593,7 @@
             #footerBox2 {
                 margin-bottom: 0;
                 margin: 0 4 0px 20px;
+
             }
 
             #footerBox3 {
