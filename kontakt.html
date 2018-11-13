@@ -7,6 +7,7 @@
 
         * {
             color: white;
+              font-family: "Avenir", Verdana, sans-serif;
         }
         body {
             min-height: 100%;
@@ -14,8 +15,25 @@
             grid-template-rows: 1fr auto;
             background-image: url(pics/baggrund.jpg);
         }
-        .kort_over_huset img {
-            width: 95vw;
+
+        .kontakt {
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        .åbningstider {
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        .kort_over_huset {
+            display: flex;
+            justify-content: center;
+        }
+
+        .kort_over_huset iframe {
+            height: 200px;
+            width: 350px;
         }
 
         .kontakt_formular input {
@@ -25,6 +43,9 @@
             width: 50vw;
         }
 
+        .kontakt_formular {
+            margin: 20px;
+        }
         textarea {
             background-color: transparent;
             border: none;
@@ -34,14 +55,59 @@
             resize: none;
         }
 
+        @media screen and (min-width:650px) {
+
+             .kort_over_huset iframe {
+            height: 300px;
+            width: 400px;
+        }
+    }
+
+        @media screen and (min-width:800px) {
+
+        .kort_over_huset iframe {
+            height: 300px;
+            width: 400px;
+        }
+    }
+
+        @media screen and (min-width:1000px) {
+
+        .kort_over_huset iframe {
+            height: 400px;
+            width: 500px;
+        }
+    }
+
+        @media screen and (min-width:1300px) {
+
+        .kort_over_huset iframe {
+            height: 500px;
+            width: 600px;
+        }
+
+        .kontakt {
+            margin: 0;
+        }
+
+        .åbningstider {
+            margin: 0;
+        }
+
+        .kort_over_huset {
+            display: block;
+        }
+    }
+
     </style>
 </head>
 <body>
 
 <main>
-    <h1>Kontakt Huset</h1>
+
     <article class="indhold">
         <div class="kontakt">
+        <h1>Kontakt Huset</h1>
         <p>Kontakt HUSET-KBH. Du kan finde os på Rådhusstræde 13. 1466 København K. Du kan også ringe til os på <a href="tel:+4521512151">21 51 21 51</a> eller kigge forbi vores hjemmeside på: <a href="info@huset-kbh.dk">info@huset-kbh.dk</a></p>
         <p>Du kan også komme forbi os! Husets reception har åbent for henvendelser i hverdage ml. 11.00-15. Vi ses i HUSET!</p>
         </div>
