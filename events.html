@@ -27,7 +27,7 @@
             display: flex;
             justify-content: center;
             padding: 12px;
-            background: rgba(36, 25, 93, 0.83);
+           background-color: rgba(33, 25, 25, 0.95);
             margin-bottom: 5vw;
 
         }
@@ -85,7 +85,8 @@
         .post-container {
             padding: 1em;
             grid-row: span 1;
-            background: var(--lyseblaa);
+            background-color: rgba(33, 25, 25, 0.61);
+            color: rgba(211, 211, 211, 0.81);
         }
 
         .post-container p,
@@ -123,9 +124,8 @@
             position: fixed;
             bottom: 0;
             width: 100%;
-            height: 40px;
-            background: var(--blaa);
-            opacity: 0.9;
+            height: 60px;
+           background-color: rgba(33, 25, 25, 0.95);
         }
 
         .nyhedsbrev a {
@@ -135,11 +135,43 @@
         }
 
         .nyhedsbrev p {
-            color: white;
+            color: rgba(211, 211, 211, 0.81);
             text-align: center;
             font-size: 10px;
             vertical-align: middle;
-            line-height: 18px;
+            padding: 15px;
+
+
+        }
+
+        .close_nyhedsbrev {
+            padding-left: 10px;
+            cursor: pointer;
+        }
+
+             .back {
+            cursor: pointer;
+            position: relative;
+            width: auto;
+            color: #FFF;
+            font-weight: bold;
+            font-size: 3em;
+            transition: 0.3s ease;
+            border-radius: 0 3px 3px 0;
+            margin: 0 20px;
+            background-color: transparent;
+        }
+
+        .back:hover {
+            font-size: 3.2em;
+        }
+
+        @media screen and (min-width:700px) {
+              .nyhedsbrev p {
+                padding: 0;
+                line-height: 50px;
+                font-size: 11px;
+            }
         }
 
         @media screen and (min-width:1000px) {
@@ -157,9 +189,10 @@
             }
 
             .post-container:hover {
-                border: 2px solid black;
-                transform: scale(1.1);
-                background: var(--lyseroed);
+           border: 2px solid var(--roed);
+            transform: scale(1.1);
+           background-color: rgba(33, 25, 25, 0.94);
+            color:  rgba(250, 250, 250, 0.81);
             }
 
             .nyhedsbrev {
@@ -167,7 +200,7 @@
             }
 
             .nyhedsbrev p {
-                line-height: 50px;
+                padding: 0;
                 font-size: 15px;
             }
 
@@ -175,7 +208,6 @@
                 display: flex;
                 justify-content: center;
                 padding: 12px;
-                background: rgba(36, 25, 93, 0.83);
                 margin-bottom: 5vw;
 
             }
@@ -216,6 +248,7 @@
             <button class="menu-item" data-kategori="Ord">ORD</button>
             <button class="menu-item" data-kategori="Diverse">DIVERSE</button>
         </div>
+        <a class="back" onclick="goBack()">&#10094;</a>
         <div class="container">
             <section class="data-container"></section>
         </div>
@@ -246,7 +279,7 @@
     </template>
 
     <article class="nyhedsbrev">
-        <p>Få nyheder, anbefalinger og særlige konkurrencer og tilbud ved at tilmelde dig vores nyhedsbrev - <a href="#"><b>Tilmed dig her</b></a></p>
+        <p>Få nyheder, anbefalinger og særlige konkurrencer og tilbud ved at tilmelde dig vores nyhedsbrev - <a href="#"><b>Tilmed dig her</b></a>  <span class="close_nyhedsbrev">&#10005;</span></p>
     </article>
 
 
@@ -299,6 +332,13 @@
             })
         }
 
+        document.querySelector(".close_nyhedsbrev").addEventListener("click", () => {
+            document.querySelector(".nyhedsbrev").style.display = "none";
+        })
+
+          function goBack() {
+            window.history.back();
+        }
     </script>
 
 </body>
