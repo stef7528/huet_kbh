@@ -140,7 +140,7 @@
         .slideshow {
             width: 100vw;
             position: relative;
-            margin: auto;
+            margin: 0 auto;
             margin-bottom: 50px;
         }
 
@@ -348,21 +348,25 @@
         footer {
 
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr;
             color: white;
+           width: 100vw;
             /*color: var(--blaa);*/
 
 
         }
-
-
-
-
-        #footerBox1 {
+         #footerBox1 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 20px;
+            padding: 20px;
+        }
+         #footerBox1 {
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-gap: 30px;
             padding: 20px;
+             margin-bottom: 50px;
         }
 
 
@@ -372,30 +376,37 @@
             text-transform: uppercase;
         }
 
-        footer a {
-            text-decoration: none;
-            /*color: var(--blaa);*/
+
+        #footerBox2 h2 {
+            font-size: 2em;
+            margin: 0 40px 20px;
+
+        }
+
+        #footerBox2 p {
+            font-size: 1.5em;
+        }
+
+        #footerBox2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+
+
+        .footerHeader {
+            font-size: .9em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .infoBox {
+            margin: 0 0px 0 50px;
+        }
+
+          .infoBox p {
             font-size: .7em;
-            transition: .4s;
-            color: white;
         }
 
-        .infoBox p {
-            font-size: .7em;
-
-=======
-
-        .footerBox {
-            background-color: white;
-<<<<<<< HEAD
-            width: 100%;
-        }
-=======
-           /* width: 100%;*/
-           /*margin: 20px 30px 0 30px;*/
->>>>>>> origin/master
-        }
->>>>>>> origin/master
 
         .tid {
             margin: 4px 0;
@@ -411,25 +422,19 @@
         }
 
         footer a:hover {
-            color: rgba(36, 25, 93, 0.4);
+            color: #bababa;
+            text-decoration: underline;
         }
 
-        #footerBox2 {
-            padding: 20px;
-            text-align: center;
+        footer a {
+            text-decoration: none;
+            /*color: var(--blaa);*/
+            font-size: .7em;
+            transition: .4s;
+            color: white;
         }
 
-        #footerBox2 h2 {
-            font-size: 2em;
-            margin: 0 40px 20px;
-
-        }
-
-        #footerBox2 p {
-            font-size: 1.5em;
-        }
-
-        #submit, .email {
+         #submit, .email {
             padding: 10px;
             border-radius: 10px;
 
@@ -455,9 +460,26 @@
             margin: 40px 0;
         }
 
+
+
+
+
+
         #footerBox3 {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
+
+        }
+
+        .sponsor {
+            display: flex;
+            justify-content: center;
+        }
+
+        #footerBox3 img {
+            max-width: 100px;
+            max-height: 100px;
+            background-color: transparent;
         }
         @media screen and (min-width:650px) {
             .slideshow {
@@ -503,6 +525,11 @@
                 pointer-events: all;
             }
 
+            #footerBox3 {
+                display: flex;
+                justify-content: center;
+
+            }
 
 
 
@@ -546,6 +573,30 @@
                 width: 50%;
             }
 
+            footer {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+            #footerBox1 {
+                margin-bottom: 0;
+            }
+
+            #footerBox2 {
+                margin-bottom: 0;
+                margin: 0 4 0px 20px;
+            }
+
+            #footerBox3 {
+                display: grid;
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 1fr 1fr;
+                height: 200px;
+            }
+            .sponsor {
+                justify-content: space-around;
+            }
+            .infoBox {
+            margin: 0 0px 0 30px;
+        }
         }
 
         @media screen and (min-width:1300px) {
@@ -569,6 +620,9 @@
                 left: 60%;
                 width: 35%;
             }
+
+
+
         }
     </style>
 </head>
@@ -590,7 +644,7 @@
                     <li><a href="events.html">Events</a></li>
                     <li><a href="#">Venues</a></li>
                     <li><a href="#">Om Huset</a></li>
-                    <li><a href="#">Kontakt</a></li>
+                    <li><a href="kontakt.html">Kontakt</a></li>
                 </ul>
                 <a class="indexLink" href="index.html"></a>
 
@@ -733,13 +787,13 @@
         </div>
         <div id="footerBox3">
             <div class="sponsor">
-                <img src="" alt="">
+                <img src="pics/tuborg-logo.png" alt="Samarbejdspartner - Tuborg">
             </div>
             <div class="sponsor">
-                <img src="" alt="">
+                <img src="pics/dansk_live.png" alt="Samarbejdspartner - Dansk Live">
             </div>
             <div class="sponsor">
-                <img src="" alt="">
+                <img src="pics/kbh_kommune.png" alt="Samarbejdspartner - Københavns Kommune">
             </div>
 
 

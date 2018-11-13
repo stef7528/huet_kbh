@@ -119,7 +119,6 @@
         .back:hover {
             font-size: 3.2em;
         }
-
     </style>
 </head>
 
@@ -168,7 +167,7 @@
         console.log(id);
 
         async function hentJson() {
-            let myJson = await fetch("http://davidfraenkeldesigns.dk/kea/2-semester/huset/wordpress/wp-json/wp/v2/events/?per_page=6");
+            let myJson = await fetch("http://davidfraenkeldesigns.dk/kea/2-semester/huset/wordpress/wp-json/wp/v2/events/?per_page=50");
             wpJSON = await myJson.json();
             visJson();
         }
@@ -199,7 +198,6 @@
         function goBack() {
             window.history.back();
         }
-
     </script>
 </body>
 
