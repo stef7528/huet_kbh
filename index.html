@@ -41,7 +41,7 @@
         * {
             margin: 0;
             padding: 0;
-            font-family: "Avenir", Verdana, sans-serif;
+            font-family: Avenir, Verdana, sans-serif;
 
 
         }
@@ -54,6 +54,7 @@
             background-image: url(pics/baggrund.jpg);
 
         }
+
 
 
         .post-container button {
@@ -99,6 +100,13 @@
 
         }
 
+
+        .post-container:hover {
+           border: 2px solid var(--roed);
+           transform: scale(1.1);
+           background-color: rgba(33, 25, 25, 0.94);
+            color:  rgba(250, 250, 250, 0.81);
+        }
 
 
         .post-container p,
@@ -214,7 +222,8 @@
 
         header {
             height: 150px;
-            width: 100%;
+            width: 400px;
+            margin: 0 auto;
             background-color: transparent;
             margin-bottom: 50px;
             z-index: 1;
@@ -261,7 +270,7 @@
             list-style: none;
             text-align: left;
             padding: 10px;
-            background-color: transparent;
+            background-color: rgba(39, 31, 31, 0.93);
             border-bottom: 1px solid black;
 
 
@@ -279,6 +288,7 @@
             text-decoration: none;
             font-size: 20px;
             transition: 0.3s;
+           color: var(--roed);
         }
 
 
@@ -306,37 +316,19 @@
         }
 
         .desktopNav {
+            height: 150px;
             display: none;
         }
 
-        .desktop_nav_menu {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-            margin: 0;
-            justify-content: space-between;
-            position: relative;
-            z-index: 10;
-            pointer-events: none;
-            top: -33px;
-            left: 30%;
-            width: 70%;
-        }
-
-        .desktop_nav_menu li {
-            display: flex;
-            justify-content: center;
-            width: 30%;
-            max-width: 100px;
-        }
 
         .desktop_nav_menu a {
             color: var(--roed);
             text-decoration: none;
             font-size: 1.2em;
-            font-family: HUSET, Avenir;
+            font-family: HUSET, Avenir, sans-serif;
 
         }
+
 
 
         footer {
@@ -344,10 +336,7 @@
             display: grid;
             grid-template-columns: 1fr;
             color: white;
-           width: 100vw;
-            /*color: var(--blaa);*/
-
-
+            width: 100vw;
         }
          #footerBox1 {
             display: grid;
@@ -455,9 +444,6 @@
 
 
 
-
-
-
         #footerBox3 {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -474,73 +460,65 @@
             max-height: 100px;
             background-color: transparent;
         }
+
+
+
         @media screen and (min-width:650px) {
 
-            #indhold {
+
+
+        #indhold {
                 margin-bottom: 80px;
             }
 
-            .post-container:hover {
+        .post-container:hover {
             border: 2px solid var(--roed);
             transform: scale(1.1);
             background-color: rgba(33, 25, 25, 0.94);
             color:  rgba(250, 250, 250, 0.81);
         }
 
-            .post-container button:hover {
+        .post-container button:hover {
             background-color: rgb(255, 179, 179);
         }
 
 
-            .slideshow {
+        .slideshow {
                 width: 70vw;
+                margin-top: 5vw;
 
             }
 
-            .data-container {
+        .data-container {
                 grid-template-columns: 1fr 1fr;
             }
 
-            .data-container {
+        .data-container {
 
                 max-width: 600px;
 
 
             }
 
-            .navBar {
+        header {
                 width: 600px;
-                margin: 0 auto;
             }
 
-            [data-overskrift] {
+        [data-overskrift] {
                 min-height: 99px;
             }
 
-            .mobile_nav_menu {
-                display: none;
-            }
 
-            .rotatePil {
-                transform: rotate(0);
-            }
 
-            .desktopNav {
-                display: block;
-                width: 100%;
 
-            }
 
-            .desktop_nav_menu {
-                pointer-events: all;
-            }
-
-            footer a:hover {
+        footer a:hover {
             color: #bababa;
             text-decoration: underline;
         }
 
-            #footerBox3 {
+
+        #footerBox3 {
                 display: flex;
                 justify-content: center;
 
@@ -549,14 +527,8 @@
 
 
 
-        }
-
         @media screen and (min-width:800px) {
-            .desktop_nav_menu {
 
-                left: 40%;
-                width: 70%;
-            }
 
             #footerBox1 {
                 max-width: 500px;
@@ -585,20 +557,66 @@
 
             }
 
+            header {
+                width: 850px;
+            }
+
             .slideshow {
                 width: 50vw;
 
             }
+            .logoPil {
 
-            .navBar {
-                width: 850px;
+               display: none;
             }
 
-            .desktop_nav_menu {
-
-                left: 55%;
-                width: 50%;
+        .logo {
+                display: none;
             }
+
+            .desktopNav {
+
+                display: flex;
+
+                width: 100%;
+        }
+
+            .logo-huset img {
+                max-width: 350px;
+                display: block;
+         }
+            .mobile_nav_menu {
+                display: none;
+            }
+
+        .rotatePil {
+                transform: rotate(0);
+            }
+
+
+        .desktop_nav_menu {
+
+            justify-content: flex-end;
+            display: flex;
+            flex-direction: row;
+            list-style: none;
+            width: 100%;
+
+        }
+
+        .desktop_nav_menu li {
+         padding: 20px 20px;
+        margin: 79px 0 0 0;
+
+
+        }
+
+        .desktop_nav_menu a {
+
+            font-size: 1.1em;
+            transition: .4s;
+        }
+
 
             footer {
                 grid-template-columns: 1fr 1fr 1fr;
@@ -625,7 +643,12 @@
             .infoBox {
             margin: 0 0px 0 30px;
         }
-        }
+
+            .desktop_nav_menu a:hover {
+                 text-shadow: 1px 1px 2px white;
+            }
+
+     }
 
         @media screen and (min-width:1300px) {
             .slideshow {
@@ -639,19 +662,19 @@
 
             }
 
-            .navBar {
-                width: 1300px;
+            header {
+               width: 1300px;
             }
 
             .desktop_nav_menu {
-
-                left: 60%;
-                width: 35%;
+                margin: 0 auto;
             }
 
 
 
         }
+
+
     </style>
 </head>
 
@@ -682,7 +705,14 @@
 
             </div>
 
+
             <div class="desktopNav">
+                <div class="logo-huset">
+                    <a href="index.html">
+                        <img src="huset-logo-01.png" alt="logo">
+                    </a>
+                </div>
+
                 <ul class="desktop_nav_menu">
                     <li><a href="events.html">EVENTS</a></li>
                     <li><a href="#">VENUES</a></li>

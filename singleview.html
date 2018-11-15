@@ -28,17 +28,11 @@
         }
 
         img {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 50%;
-            padding: 5px;
+            width: 100%;
         }
 
         h2 {
-            display: flex;
-            position: relative;
-            left: 375px;
+
             color: white;
         }
 
@@ -46,61 +40,69 @@
             color: white;
         }
 
+        .data-container {
+            display: grid;
+            max-width: 400px;
+            margin: 0 auto;
+            grid-gap: 10px;
+        }
+
+        .post-container {
+            padding: 1em;
+            grid-row: span 1;
+            background-color: rgba(33, 25, 25, 0.61);
+            margin-bottom: 50px;
+
+        }
+
+        .post-container p,
+        .post-container img,
+        .post-container h2,
         .post-container button {
+            margin: 7px 0;
+        color: rgba(211, 211, 211, 0.81);
+        }
+
+          .post-container button {
             display: none;
             border: 2px solid var(--roed);
             background-color: var(--lyseroed);
             color: var(--blaa);
             border-radius: 2em;
-            height: 60px;
+            height: 40px;
             min-width: 125px;
             padding: 0 30px;
-            font-size: 20px;
+            font-size: 16px;
             cursor: pointer;
             transition: .5s;
-            margin: 8px;
-            padding: 4px;
-
         }
 
-        .post-container button:hover {
+            .post-container button:hover {
             background-color: rgb(255, 179, 179);
         }
 
-        .flex-genre {
-            position: relative;
-            left: 375px;
-            padding: 5px;
-
-        }
-
-        .flex-dato {
-            position: relative;
-            left: 375px;
-            top: 50px;
-        }
-
-        [data-pris] {
-            position: relative;
-            justify-content: space-around;
-            left: 875px;
-            top: 30px;
-        }
-
-        [data-button] {
-            position: relative;
-            left: 1000px;
-            bottom: 20px;
+           .flex-pris {
+            display: flex;
+            justify-content: space-between;
             padding-bottom: 10px;
         }
 
+        [data-pris] {
+            padding-top: 10px;
+        }
+
+        .flex-genre {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .flex-dato {
+            display: flex;
+            justify-content: space-between;
+        }
 
         [data-lang-beskrivelse] {
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 10px;
-            width: 50%;
+
         }
 
         .back {
@@ -119,6 +121,36 @@
         .back:hover {
             font-size: 3.2em;
         }
+
+        @media screen and (min-width:700px) {
+
+        .data-container {
+
+            max-width: 1000px;
+
+        }
+
+        .post-container p,
+        .post-container img,
+        .post-container h2,
+        .post-container button {
+           font-size: 15px;
+        }
+
+            img {
+                width: 100%;
+            }
+        }
+
+        @media screen and (min-width:1000px) {
+             .post-container p,
+        .post-container img,
+        .post-container h2,
+        .post-container button {
+           font-size: 20px;
+        }
+        }
+
     </style>
 </head>
 
@@ -127,10 +159,7 @@
         <a class="back" onclick="goBack()">&#10094;</a>
         <section class="data-container">
             <article class="post-container">
-
-
                 <h2 data-overskrift></h2>
-
                 <div>
                     <div class="flex-genre">
                         <p data-genre></p>
@@ -147,13 +176,7 @@
                         <p data-pris></p>
                         <button data-button>Køb</button>
                     </div>
-
-
-
                 </div>
-
-                <!--<div class="divider"></div>-->
-
             </article>
         </section>
     </main>
