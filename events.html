@@ -65,21 +65,27 @@
             padding: 0 30px;
             font-size: 16px;
             cursor: pointer;
-            transition: .4s;
+            transition: .5s;
+        }
+
+            .post-container button:hover {
+            background-color: rgb(255, 179, 179);
         }
 
         #indhold {
             width: 100vw;
+            margin-bottom: 50px;
         }
 
         .data-container {
             display: grid;
-            max-width: 1300px;
+            max-width: 400px;
             margin: 0 auto;
+            grid-gap: 10px;
         }
 
         .data-container article img {
-            width: 100%;
+            width: 100%
         }
 
         .post-container {
@@ -93,12 +99,12 @@
         .post-container img,
         .post-container h2,
         .post-container button {
-            margin: 7px;
+            margin: 7px 0;
         }
 
-        [data-overskrift] {
+    /*    [data-overskrift] {
             min-height: 66px;
-        }
+        }*/
 
         .flex-pris {
             display: flex;
@@ -117,6 +123,7 @@
 
         .flex-dato {
             display: flex;
+            justify-content: space-between;
         }
 
 
@@ -178,6 +185,12 @@
             .data-container {
                 grid-template-columns: 1fr 1fr 1fr;
                 grid-gap: 20px;
+            }
+
+            .data-container {
+
+                max-width: 1300px;
+
             }
 
             [data-overskrift] {
