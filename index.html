@@ -55,6 +55,11 @@
 
         }
 
+          .logo-huset img {
+            visibility: hidden;
+            max-width: 2px;
+        }
+
 
         .post-container button {
             display: none;
@@ -102,8 +107,8 @@
         }
 
         .post-container:hover {
-border: 2px solid var(--roed);
-            transform: scale(1.1);
+           border: 2px solid var(--roed);
+           transform: scale(1.1);
            background-color: rgba(33, 25, 25, 0.94);
             color:  rgba(250, 250, 250, 0.81);
         }
@@ -268,8 +273,9 @@ border: 2px solid var(--roed);
             list-style: none;
             text-align: left;
             padding: 10px;
-            background-color: transparent;
+            background-color: rgba(39, 31, 31, 0.93);
             border-bottom: 1px solid black;
+            font-family: avenir;
 
 
         }
@@ -286,6 +292,7 @@ border: 2px solid var(--roed);
             text-decoration: none;
             font-size: 20px;
             transition: 0.3s;
+           color: var(--roed);
         }
 
 
@@ -313,37 +320,10 @@ border: 2px solid var(--roed);
         }
 
         .desktopNav {
-            display: none;
+
+            visibility: hidden;
         }
 
-        .desktop_nav_menu {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-            margin: 0;
-            justify-content: space-between;
-            position: relative;
-            z-index: 10;
-            pointer-events: none;
-            top: -33px;
-            left: 30%;
-            width: 70%;
-        }
-
-        .desktop_nav_menu li {
-            display: flex;
-            justify-content: center;
-            width: 30%;
-            max-width: 100px;
-        }
-
-        .desktop_nav_menu a {
-            color: var(--roed);
-            text-decoration: none;
-            font-size: 1.3em;
-            font-family: HUSET, Avenir;
-
-        }
 
 
         footer {
@@ -465,9 +445,6 @@ border: 2px solid var(--roed);
 
 
 
-
-
-
         #footerBox3 {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
@@ -489,6 +466,7 @@ border: 2px solid var(--roed);
 
             .slideshow {
                 width: 70vw;
+                margin-top: 5vw;
 
             }
 
@@ -520,15 +498,7 @@ border: 2px solid var(--roed);
                 transform: rotate(0);
             }
 
-            .desktopNav {
-                display: block;
-                width: 100%;
 
-            }
-
-            .desktop_nav_menu {
-                pointer-events: all;
-            }
 
             #footerBox3 {
                 display: flex;
@@ -536,17 +506,25 @@ border: 2px solid var(--roed);
 
             }
 
+            .logoPil {
 
+                visibility: hidden;
+            }
 
+            .logo {
+                visibility: hidden;
+            }
+
+            .logo-huset img {
+                max-width: 500px;
+                margin-left: 3vw;
+                padding: 1vw;
+                visibility: visible;
 
         }
 
         @media screen and (min-width:800px) {
-            .desktop_nav_menu {
 
-                left: 40%;
-                width: 70%;
-            }
 
             #footerBox1 {
                 max-width: 500px;
@@ -573,15 +551,58 @@ border: 2px solid var(--roed);
 
             }
 
-            .navBar {
-                width: 850px;
+            .desktopNav {
+
+            margin-left: 10vw;
+            margin-bottom: 15vw;
+            visibility: visible;
+            margin-top: -22vw;
+        }
+
+               .logo-huset img {
+                max-width: 350px;
+                margin-left: 3vw;
+                padding: 1vw;
+                visibility: visible;
+
+        }
+
+
+
+
+        .desktop_nav_menu {
+
+            justify-content: flex-end;
+            display: flex;
+            flex-direction: row;
+            list-style: none;
+
+        }
+
+        .desktop_nav_menu li {
+         padding: 20px 20px;
+
+
+        }
+
+        .desktop_nav_menu a {
+            color: white;
+            font-size: 1.5em;
+            text-decoration: none;
+            text-shadow: 1px 1px 0.5px black, 0 0 0.5px white, 0 0 0.5px white;
+            font-family: Avenir;
+
+        }
+
+
+
+        .desktop_nav_menu a:hover {
+            color: black;
+
             }
 
-            .desktop_nav_menu {
 
-                left: 55%;
-                width: 50%;
-            }
+
 
             footer {
                 grid-template-columns: 1fr 1fr 1fr;
@@ -608,6 +629,46 @@ border: 2px solid var(--roed);
             .infoBox {
             margin: 0 0px 0 30px;
         }
+
+        .desktopNav {
+
+            margin-left: 10vw;
+            margin-bottom: 15vw;
+            visibility: visible;
+            margin-top: -22vw;
+        }
+
+        .desktop_nav_menu {
+
+            justify-content: flex-end;
+            display: flex;
+            flex-direction: row;
+            list-style: none;
+
+        }
+
+        .desktop_nav_menu li {
+         padding: 20px 20px;
+
+
+        }
+
+        .desktop_nav_menu a {
+            color: white;
+            font-size: 1.5em;
+            text-decoration: none;
+            text-shadow: 1px 1px 0.5px black, 0 0 0.5px white, 0 0 0.5px white;
+            font-family: Avenir;
+            transition: .3s;
+        }
+
+
+
+        .desktop_nav_menu a:hover {
+            font-size: 28px;
+
+            }
+
         }
 
         @media screen and (min-width:1300px) {
@@ -626,15 +687,11 @@ border: 2px solid var(--roed);
                 width: 1300px;
             }
 
-            .desktop_nav_menu {
-
-                left: 60%;
-                width: 35%;
-            }
-
 
 
         }
+
+
     </style>
 </head>
 
@@ -643,7 +700,10 @@ border: 2px solid var(--roed);
     <header>
 
 
+        <div class="logo-huset">
 
+            <img src="huset-logo-01.png" alt="logo">
+        </div>
 
 
         <nav class="navBar">
