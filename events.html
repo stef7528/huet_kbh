@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
     <style>
@@ -118,6 +118,10 @@
             padding-top: 10px;
         }
 
+        [data-overskrift] {
+            min-height: 99px;
+        }
+
         .flex-genre {
             display: flex;
             justify-content: space-between;
@@ -171,15 +175,16 @@
             background-color: transparent;
         }
 
-        .back:hover {
-            font-size: 3.2em;
-        }
-
         @media screen and (min-width:700px) {
             .nyhedsbrev p {
                 padding: 0;
                 line-height: 50px;
                 font-size: 11px;
+            }
+
+            .data-container {
+                grid-template-columns: 1fr 1fr;
+                max-width: 600px;
             }
         }
 
@@ -191,58 +196,58 @@
 
             .data-container {
 
-                max-width: 1300px;
-
-            }
-
-            [data-overskrift] {
-                min-height: 99px;
-            }
-
-            .post-container {
-                transition: .4s;
-            }
-
-            .post-container:hover {
-                border: 2px solid var(--roed);
-                transform: scale(1.1);
-                background-color: rgba(33, 25, 25, 0.94);
-                color: rgba(250, 250, 250, 0.81);
-            }
-
-            .nyhedsbrev {
-                height: 50px;
-            }
-
-            .nyhedsbrev p {
-                padding: 0;
-                font-size: 15px;
-            }
-
-            #filtrerings_knapper {
-                display: flex;
-                justify-content: center;
-                padding: 12px;
-                margin-bottom: 5vw;
-
-            }
-
-            .menu-item {
-
-                font-size: 25px;
-                padding: 14px;
-                color: white;
-
-
-
-            }
-
-            .menu-item:hover {
-                text-shadow: 1px 1px 2px red, 0 0 25px red, 0 0 5px darkred;
+                max-width: 850px;
             }
 
         }
 
+        [data-overskrift] {
+            min-height: 99px;
+        }
+
+        .post-container {
+            transition: .4s;
+        }
+
+        .post-container:hover {
+            border: 2px solid var(--roed);
+            transform: scale(1.1);
+            background-color: rgba(33, 25, 25, 0.94);
+            color: rgba(250, 250, 250, 0.81);
+        }
+
+        .nyhedsbrev {
+            height: 50px;
+        }
+
+        .nyhedsbrev p {
+            padding: 0;
+            font-size: 15px;
+        }
+
+        #filtrerings_knapper {
+            display: flex;
+            justify-content: center;
+            padding: 12px;
+            margin-bottom: 5vw;
+
+        }
+
+        .menu-item {
+
+            font-size: 25px;
+            padding: 14px;
+            color: white;
+
+
+
+        }
+
+        .menu-item:hover {
+            text-shadow: 1px 1px 2px red, 0 0 25px red, 0 0 5px darkred;
+        }
+
+        }
     </style>
 </head>
 
@@ -330,7 +335,12 @@
                     klon.querySelector("[data-lokation]").textContent = post.acf.sted;
                     klon.querySelector("[data-dato]").textContent = post.acf.dato;
                     klon.querySelector("[data-tid]").textContent = "Kl. " + post.acf.tid;
-                    klon.querySelector("[data-pris]").textContent = "Pris: " + post.acf.pris + ",-";
+                    if (post.acf.pris == "0") {
+                        klon.querySelector("[data-pris]").textContent = "Gratis";
+                    } else {
+                        klon.querySelector("[data-pris]").textContent = "Pris: " + post.acf.pris + ",-";
+                    }
+
                     klon.querySelector(".post-container").addEventListener("click", () => {
                         window.location.href = "singleview.html?id=" + post.id;
                     });
@@ -349,7 +359,6 @@
         function goBack() {
             window.history.back();
         }
-
     </script>
 
 </body>

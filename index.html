@@ -22,7 +22,6 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
 
-    <meta name="theme-color" content="#ffffff">
 
 
     <style>
@@ -272,6 +271,7 @@
             padding: 10px;
             background-color: rgba(39, 31, 31, 0.93);
             border-bottom: 1px solid black;
+            width: 100px;
 
 
         }
@@ -491,14 +491,9 @@
 
         .data-container {
                 grid-template-columns: 1fr 1fr;
+            max-width: 600px;
             }
 
-        .data-container {
-
-                max-width: 600px;
-
-
-            }
 
         header {
                 width: 600px;
@@ -867,6 +862,26 @@
 
         let slideNumber = 1;
         let slides = document.querySelectorAll(".slide");
+
+        function showSlides(n) {
+            let i;
+
+            if (n > slides.length) {
+                slideNumber = 1
+            }
+            if (n < 1) {
+                slideNumber = slides.length
+            }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            slides[slideNumber - 1].style.display = "block";
+
+
+
+        }
+
         showSlides(slideNumber);
 
 
@@ -875,6 +890,7 @@
         function plusOne(n) {
             showSlides(slideNumber += n);
         }
+
 
 
 
@@ -900,24 +916,7 @@
         setInterval(autoSlide, 5000);
 
 
-        function showSlides(n) {
-            let i;
 
-            if (n > slides.length) {
-                slideNumber = 1
-            }
-            if (n < 1) {
-                slideNumber = slides.length
-            }
-            for (i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-
-            slides[slideNumber - 1].style.display = "block";
-
-
-
-        }
 
 
         async function hentJson() {
@@ -950,8 +949,12 @@
                         /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
 
                         klon.querySelector("[data-lokation]").textContent = "Sted: " + post.acf.sted;
+                        if (post.acf.pris == "0") {
+                            klon.querySelector("[data-pris]").textContent = "Gratis";
+                        } else {
+                            klon.querySelector("[data-pris]").textContent = "Pris: " + post.acf.pris + ",-";
+                        }
 
-                        klon.querySelector("[data-pris]").textContent = "Pris: " + post.acf.pris + ",-";
 
                         klon.querySelector("[data-dato]").textContent = post.acf.dato;
 
@@ -991,6 +994,7 @@
         document.querySelector(".logoPil").addEventListener("click", function() {
             event.stopPropagation();
         });
+
     </script>
 
 </body>
