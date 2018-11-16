@@ -42,7 +42,7 @@
 
 
         body {
-            background-image: url(pics/baggrund.jpg);
+            background-image: url(app_pics/baggrund.jpg);
         }
 
         img {
@@ -78,14 +78,14 @@
         .post-container h2,
         .post-container button {
             margin: 7px 0;
-        color: rgba(211, 211, 211, 0.81);
+            color: rgba(211, 211, 211, 0.81);
         }
 
-          .post-container button {
+        .post-container button {
             display: none;
             border: 2px solid var(--roed);
             background-color: var(--lyseroed);
-            color: var(--blaa);
+            color: #000;
             border-radius: 2em;
             height: 40px;
             min-width: 125px;
@@ -95,11 +95,8 @@
             transition: .5s;
         }
 
-            .post-container button:hover {
-            background-color: rgb(255, 179, 179);
-        }
 
-           .flex-pris {
+        .flex-pris {
             display: flex;
             justify-content: space-between;
             padding-bottom: 10px;
@@ -119,15 +116,15 @@
             justify-content: space-between;
         }
 
-        [data-lang-beskrivelse] {
-
+        [data-overskrift] {
+            min-height: 99px;
         }
 
         .back {
             cursor: pointer;
             position: relative;
             width: auto;
-            color: #FFF;
+            color: rgba(211, 211, 211, 0.81);
             font-weight: bold;
             font-size: 3em;
             transition: 0.3s ease;
@@ -136,45 +133,139 @@
             background-color: transparent;
         }
 
-        .back:hover {
-            font-size: 3.2em;
+        header {
+            height: 150px;
+            width: 100%;
+            background-color: transparent;
+            margin-bottom: 50px;
+            z-index: 1;
+            pointer-events: all;
+        }
+
+        .logo {
+            background-image: url(app_pics/logoer-05.png);
+            background-size: cover;
+            width: 150px;
+            height: 150px;
+            position: relative;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .logoPil {
+            position: relative;
+            width: 70px;
+            height: 60px;
+            left: 85px;
+            top: 13.5px;
+            /*top: 83px;*/
+            background-color: transparent;
+            cursor: pointer;
+            transition: 0.5s;
+            z-index: 11;
+
+        }
+
+        .mobile_nav_menu {
+            position: relative;
+            left: calc(150px - 60px);
+            top: 80px;
+            width: 100px;
+            max-height: 0;
+            opacity: 0;
+            transition: .3s;
+            pointer-events: none;
+
+        }
+
+        .mobile_nav_menu {
+            position: relative;
+            left: calc(150px - 60px);
+            top: 80px;
+            width: 100px;
+            max-height: 0;
+            opacity: 0;
+            transition: .3s;
+            pointer-events: none;
+
+        }
+
+        .mobile_nav_menu li {
+            list-style: none;
+            text-align: left;
+            padding: 10px;
+            background-color: rgba(39, 31, 31, 0.93);
+            border-bottom: 1px solid black;
+            width: 100px;
+
+
+        }
+
+        .open_nav {
+            opacity: 1;
+            max-height: 140px;
+            transform: .3s;
+            cursor: pointer;
+            pointer-events: all;
+        }
+
+        .mobile_nav_menu a {
+            text-decoration: none;
+            font-size: 20px;
+            transition: 0.3s;
+            color: var(--roed);
+        }
+
+
+        .rotatePil {
+            transform: rotate(-90deg);
+        }
+
+        nav li {
+            list-style: none;
         }
 
         @media screen and (min-width:700px) {
 
-        .data-container {
+            .data-container {
 
-            max-width: 1000px;
+                max-width: 1000px;
 
-        }
+            }
 
-        .post-container p,
-        .post-container img,
-        .post-container h2,
-        .post-container button {
-           font-size: 15px;
-        }
+            .post-container p,
+            .post-container img,
+            .post-container h2,
+            .post-container button {
+                font-size: 15px;
+            }
 
             img {
                 width: 100%;
             }
         }
-
-        @media screen and (min-width:1000px) {
-             .post-container p,
-        .post-container img,
-        .post-container h2,
-        .post-container button {
-           font-size: 20px;
-        }
-        }
-
     </style>
 </head>
 
 <body>
+    <nav class="navBar">
+
+        <div class="logo">
+
+            <img class="logoPil" src="app_pics/logoer-04.png">
+            <ul class="mobile_nav_menu">
+                <li><a href="index.WebApp.html">Forside</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+            <a class="indexLink" href="index.WebApp.html"></a>
+
+
+
+
+
+        </div>
+    </nav>
     <main class="container">
-        <a class="back" onclick="goBack()">&#10094;</a>
         <section class="data-container">
             <article class="post-container">
                 <h2 data-overskrift></h2>
@@ -239,6 +330,19 @@
         function goBack() {
             window.history.back();
         }
+
+        function toggleMenu() {
+            document.querySelector(".logoPil").classList.toggle("rotatePil");
+
+
+            document.querySelector("ul").classList.toggle("open_nav");
+
+        }
+        document.querySelector(".logoPil").addEventListener("click", toggleMenu);
+
+        document.querySelector(".logoPil").addEventListener("click", function() {
+            event.stopPropagation();
+        });
     </script>
 </body>
 

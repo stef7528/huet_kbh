@@ -44,13 +44,14 @@
             font-family: "Avenir", Verdana, sans-serif;
 
 
+
         }
 
         body {
             min-height: 100vh;
             display: grid;
             grid-template-rows: 1fr auto;
-            background: #222222;
+            background-image: url(app_pics/baggrund.jpg);
 
 
         }
@@ -68,10 +69,6 @@
             font-size: 16px;
             cursor: pointer;
             transition: .5s;
-        }
-
-        .post-container button:hover {
-            background-color: rgb(255, 179, 179);
         }
 
         #indhold {
@@ -124,12 +121,6 @@
 
         }
 
-        .post-container:hover {
-            border: 2px solid var(--roed);
-            transform: scale(1.1);
-            background-color: rgba(33, 25, 25, 0.94);
-            color: rgba(250, 250, 250, 0.81);
-        }
 
         .post-container p,
         [data-billede],
@@ -138,10 +129,10 @@
             margin: 7px 0;
         }
 
-        /*[data-overskrift] {
-            min-height: 66px;
+        [data-overskrift] {
+            min-height: 99px;
         }
-*/
+
         .flex-pris {
             display: flex;
             justify-content: space-between;
@@ -162,85 +153,6 @@
             justify-content: space-between;
         }
 
-        .slideshow {
-            width: 100vw;
-            position: relative;
-            margin: 0 auto;
-            margin-bottom: 50px;
-        }
-
-        .slideshow img {
-            width: 100%;
-        }
-
-        .slideNumber {
-            color: #fFF;
-            font-size: 12px;
-            padding: 8px 12px;
-            position: absolute;
-            top: 0;
-            background-color: transparent;
-        }
-
-        .slideText {
-            color: #FFF;
-            font-size: 15px;
-            padding: 20px 0px;
-            position: absolute;
-            bottom: 8px;
-            width: 100%;
-            text-align: center;
-            background-color: transparent;
-        }
-
-        .prev,
-        .next {
-            cursor: pointer;
-            position: absolute;
-            top: 45%;
-            width: auto;
-            color: #FFF;
-            font-weight: bold;
-            font-size: 3em;
-            transition: 0.3s ease;
-            border-radius: 0 3px 3px 0;
-            margin: 0 20px;
-            background-color: transparent;
-        }
-
-        .prev:hover,
-        .next:hover {
-            font-size: 3.2em;
-        }
-
-
-        .next {
-            right: 0;
-            border-radius: 3px 0 0 3px;
-        }
-
-        .slide {
-            display: none;
-        }
-
-        .fade {
-            -webkit-animation-name: fade;
-            -webkit-animation-duration: 1.5s;
-            animation-name: fade;
-            animation-duration: 1.5s;
-        }
-
-        @keyframes fade {
-            from {
-                opacity: .4
-            }
-
-            to {
-                opacity: 1
-            }
-        }
-
-
 
         header {
             height: 150px;
@@ -252,7 +164,7 @@
         }
 
         .logo {
-            background-image: url(pics/logoer-05.png);
+            background-image: url(app_pics/logoer-05.png);
             background-size: cover;
             width: 150px;
             height: 150px;
@@ -284,6 +196,7 @@
             opacity: 0;
             transition: .3s;
             pointer-events: none;
+            display: block;
 
         }
 
@@ -291,8 +204,10 @@
             list-style: none;
             text-align: left;
             padding: 10px;
-            background-color: transparent;
+            background-color: rgba(39, 31, 31, 0.93);
             border-bottom: 1px solid black;
+            width: 100px;
+
 
 
         }
@@ -303,14 +218,15 @@
             transform: .3s;
             cursor: pointer;
             pointer-events: all;
+
         }
 
         .mobile_nav_menu a {
             text-decoration: none;
             font-size: 20px;
             transition: 0.3s;
+            color: var(--roed);
         }
-
 
 
         .rotatePil {
@@ -334,181 +250,6 @@
             filter: alpha(opacity=1);
 
         }
-
-        .desktopNav {
-            display: none;
-        }
-
-        .desktop_nav_menu {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-            margin: 0;
-            justify-content: space-between;
-            position: relative;
-            z-index: 10;
-            pointer-events: none;
-            top: -33px;
-            left: 30%;
-            width: 70%;
-        }
-
-        .desktop_nav_menu li {
-            display: flex;
-            justify-content: center;
-            width: 30%;
-            max-width: 100px;
-        }
-
-        .desktop_nav_menu a {
-            color: var(--roed);
-            text-decoration: none;
-            font-size: 1.3em;
-            font-family: HUSET, Avenir;
-
-        }
-
-
-        footer {
-
-            display: grid;
-            grid-template-columns: 1fr;
-            color: white;
-            width: 100vw;
-            /*color: var(--blaa);*/
-
-
-        }
-
-        #footerBox1 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-gap: 20px;
-            padding: 20px;
-        }
-
-        #footerBox1 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-gap: 30px;
-            padding: 20px;
-            margin-bottom: 50px;
-        }
-
-
-        .footerHeader {
-            font-size: .9em;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-
-        #footerBox2 h2 {
-            font-size: 2em;
-            margin: 0 40px 20px;
-
-        }
-
-        #footerBox2 p {
-            font-size: 1.5em;
-            max-width: 400px;
-            margin: 0 auto;
-        }
-
-        #footerBox2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-
-
-        .footerHeader {
-            font-size: .9em;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        .infoBox {
-            margin: 0 0px 0 50px;
-        }
-
-        .infoBox p {
-            font-size: .7em;
-        }
-
-
-        .tid {
-            margin: 4px 0;
-        }
-
-        .venue {
-            font-size: .8em;
-            font-weight: bold;
-        }
-
-        footer li {
-            list-style: none;
-        }
-
-        footer a:hover {
-            color: #bababa;
-            text-decoration: underline;
-        }
-
-        footer a {
-            text-decoration: none;
-            /*color: var(--blaa);*/
-            font-size: .7em;
-            transition: .4s;
-            color: white;
-        }
-
-        #submit,
-        .email {
-            padding: 10px;
-            border-radius: 10px;
-
-        }
-
-        .email {
-            background-color: var(--lyseblaa);
-            border: 2px solid var(--blaa);
-        }
-
-        #submit {
-            background-color: transparent;
-            color: var(--lyseblaa);
-            transition: .3s;
-
-        }
-
-        #submit:hover {
-            border: 2px solid var(--lyseblaa);
-            box-shadow: 0 0 10px;
-        }
-
-        form {
-            margin: 40px 0;
-        }
-
-
-
-
-
-
-        #footerBox3 {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-
-        }
-
-
-        #footerBox3 {
-            display: flex;
-            justify-content: center;
-
-        }
-
     </style>
 </head>
 
@@ -524,28 +265,17 @@
 
             <div class="logo">
 
-                <img class="logoPil" src="pics/logoer-04.png">
+                <img class="logoPil" src="app_pics/logoer-04.png">
                 <ul class="mobile_nav_menu">
-                    <li><a href="events.html">Events</a></li>
-                    <li><a href="#">Venues</a></li>
-                    <li><a href="#">Om Huset</a></li>
+                    <li><a href="index.WebApp.html">Forside</a></li>
                     <li><a href="kontakt.html">Kontakt</a></li>
                 </ul>
-                <a class="indexLink" href="index.html"></a>
+                <a class="indexLink" href="index.WebApp.html"></a>
 
 
 
 
 
-            </div>
-
-            <div class="desktopNav">
-                <ul class="desktop_nav_menu">
-                    <li><a href="events.html">EVENTS</a></li>
-                    <li><a href="#">VENUES</a></li>
-                    <li><a href="#">OM HUSET</a></li>
-                    <li><a href="#">KONTAKT</a></li>
-                </ul>
             </div>
 
 
@@ -555,8 +285,6 @@
     </header>
 
 
-
-    </div>
     <main id="indhold">
         <div id="filtrerings_knapper">
             <button class="menu-item" data-kategori="Menu">ALLE EVENTS</button>
@@ -596,47 +324,6 @@
         </article>
     </template>
 
-
-
-    <footer>
-        <div id="footerBox1">
-            <div class="infoBox">
-                <a href="" class="footerHeader">Udlejning</a>
-                <ul class="footerUl">
-                    <li><a href="">Salon K</a></li>
-                    <li><a href="">Balsalen</a></li>
-                    <li><a href="">Musikcaféen</a></li>
-                    <li><a href="">Stardust</a></li>
-                </ul>
-            </div>
-            <div class="infoBox">
-                <h3 class="footerHeader">Åbningstider</h3>
-                <ul class="footerUl">
-                    <li><a class="venue" href="">Reception</a></li>
-                    <p class="tid">Hverdage: 11.00-15.00</p>
-                    <li><a class="venue" href="">Bastard café</a></li>
-                    <p class="tid">Mandag-torsdag: 12.00-00.00</p>
-                    <p class="tid">Fredag-lørdag: 12.00-02.00</p>
-                    <p class="tid">Søndag: 12.00-00.00</p>
-                    <li><a class="venue" href="">Spisehuset fair</a></li>
-                    <p class="tid">Tirsdag-lørdag: 17.00-22.00</p>
-                </ul>
-            </div>
-            <div class="infoBox">
-                <a href="" class="footerHeader">Kontakt</a>
-                <ul class="footerUl">
-                    <li><a href="">FAQ</a></li>
-                    <li><a href="">Husets administration</a></li>
-                </ul>
-            </div>
-        </div>
-
-
-
-
-    </footer>
-
-
     <script>
         let wpJSON;
         let dest = document.querySelector(".data-container");
@@ -673,9 +360,14 @@
                     klon.querySelector("[data-lokation]").textContent = post.acf.sted;
                     klon.querySelector("[data-dato]").textContent = post.acf.dato;
                     klon.querySelector("[data-tid]").textContent = "Kl. " + post.acf.tid;
-                    klon.querySelector("[data-pris]").textContent = "Pris: " + post.acf.pris + ",-";
+                    if (post.acf.pris == "0") {
+                        klon.querySelector("[data-pris]").textContent = "Gratis";
+                    } else {
+                        klon.querySelector("[data-pris]").textContent = "Pris: " + post.acf.pris + ",-";
+                    }
+
                     klon.querySelector(".post-container").addEventListener("click", () => {
-                        window.location.href = "singleview.html?id=" + post.id;
+                        window.location.href = "singleview.WebApp.html?id=" + post.id;
                     });
                     if (post.acf.buy == true) {
                         klon.querySelector("[data-button]").style.display = "block";
@@ -685,9 +377,9 @@
             })
         }
 
-        document.querySelector(".close_nyhedsbrev").addEventListener("click", () => {
-            document.querySelector(".nyhedsbrev").style.display = "none";
-        })
+        /*document.querySelector(".close_nyhedsbrev").addEventListener("click", () => {
+document.querySelector(".nyhedsbrev").style.display = "none";
+})*/
 
         function goBack() {
             window.history.back();
@@ -706,7 +398,6 @@
         document.querySelector(".logoPil").addEventListener("click", function() {
             event.stopPropagation();
         });
-
     </script>
 
 </body>
