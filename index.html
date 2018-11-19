@@ -140,10 +140,10 @@
         }
 
         .slideshow {
-            width: 100vw;
+            width: 100%;
             position: relative;
-            margin: 0 auto;
             margin-bottom: 50px;
+
         }
 
         .slideshow img {
@@ -486,6 +486,8 @@
         .slideshow {
                 width: 70vw;
                 margin-top: 5vw;
+            margin: 0 auto;
+
 
             }
 
@@ -558,6 +560,7 @@
 
             .slideshow {
                 width: 50vw;
+
 
             }
             .logoPil {
@@ -857,8 +860,10 @@
 
     <script>
         let wpJSON;
+        let events = [];
         let dest = document.querySelector(".data-container");
         document.addEventListener("DOMContentLoaded", hentJson);
+
 
         let slideNumber = 1;
         let slides = document.querySelectorAll(".slide");
@@ -927,16 +932,32 @@
 
 
 
+
         function visJson() {
             let myTemplate = document.querySelector(".data-template");
 
-            console.log(wpJSON);
+
+            wpJSON.sort(function(a, b) {
+
+                return a.acf.dato - b.acf.dato;
+            });
 
 
             wpJSON.forEach(post => {
 
-
                     let klon = myTemplate.cloneNode(true).content;
+
+
+
+                    let year = post.acf.dato.substring(0, 4);
+                    let month = post.acf.dato.substring(4, 6);
+                    let day = post.acf.dato.substring(6, 8);
+
+
+
+
+
+
 
                     if (post.acf.events == "Film", "Musik", "Art", "Teater", "Stand_up", "Diverse") {
 
@@ -956,7 +977,9 @@
                         }
 
 
-                        klon.querySelector("[data-dato]").textContent = post.acf.dato;
+                        /*klon.querySelector("[data-dato]").textContent = post.acf.dato;*/
+
+                        klon.querySelector("[data-dato]").textContent = day + "." + month + "-" + year;
 
                         klon.querySelector("[data-tid]").textContent = "Kl. " + post.acf.tid;
 
@@ -969,7 +992,7 @@
 
                         klon.querySelector(".post-container").addEventListener("click", () => {
                             window.location.href = "singleview.html?id=" + post.id;
-                            console.log(post.id);
+
                         });
 
                         dest.appendChild(klon);
@@ -994,7 +1017,6 @@
         document.querySelector(".logoPil").addEventListener("click", function() {
             event.stopPropagation();
         });
-
     </script>
 
 </body>

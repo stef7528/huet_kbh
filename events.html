@@ -337,23 +337,38 @@
             dest.textContent = "";
             eventFilter = this.getAttribute("data-kategori");
             visJson();
-            console.log("filtrering");
+
         }
 
         function visJson() {
             let myTemplate = document.querySelector(".data-template");
-            console.log(wpJSON);
-            console.log("visJson");
+
+
+            wpJSON.sort(function(a, b) {
+
+                return a.acf.dato - b.acf.dato;
+            });
+
+
             wpJSON.forEach(post => {
+
+                let klon = myTemplate.cloneNode(true).content;
+
+
+
+                let year = post.acf.dato.substring(0, 4);
+                let month = post.acf.dato.substring(4, 6);
+                let day = post.acf.dato.substring(6, 8);
+
                 if (post.acf.events == eventFilter || eventFilter == "Menu") {
-                    console.log("ifstatement")
-                    let klon = myTemplate.cloneNode(true).content;
+
+
                     klon.querySelector("[data-overskrift]").textContent = post.acf.titel;
                     klon.querySelector("[data-genre]").textContent = post.acf.genre;
                     klon.querySelector("[data-billede]").src = post.acf.billede;
                     /* klon.querySelector("[data-lang-beskrivelse]").textContent = post.acf.Lang_beskrivelse;*/
                     klon.querySelector("[data-lokation]").textContent = post.acf.sted;
-                    klon.querySelector("[data-dato]").textContent = post.acf.dato;
+                    klon.querySelector("[data-dato]").textContent = day + "/" + month + "-" + year;
                     klon.querySelector("[data-tid]").textContent = "Kl. " + post.acf.tid;
                     if (post.acf.pris == "0") {
                         klon.querySelector("[data-pris]").textContent = "Gratis";
