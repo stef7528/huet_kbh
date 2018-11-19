@@ -38,14 +38,11 @@
             border-radius: 40px;
             margin: 7px;
             background: transparent;
-            font-size: 20px;
+            font-size: 10px;
             padding: 10px;
             color: white;
             font-family: HUSET, Avenir;
             cursor: pointer;
-
-
-
         }
 
 
@@ -104,10 +101,6 @@
             margin: 7px 0;
         }
 
-        /*    [data-overskrift] {
-            min-height: 66px;
-        }*/
-
         .flex-pris {
             display: flex;
             justify-content: space-between;
@@ -118,9 +111,11 @@
             padding-top: 10px;
         }
 
+/*
         [data-overskrift] {
             min-height: 99px;
         }
+*/
 
         .flex-genre {
             display: flex;
@@ -182,10 +177,18 @@
                 font-size: 11px;
             }
 
+              .menu-item {
+                font-size: 15px;
+            }
+
             .data-container {
                 grid-template-columns: 1fr 1fr;
                 max-width: 600px;
             }
+
+                  [data-overskrift] {
+            min-height: 66px;
+        }
         }
 
         @media screen and (min-width:1000px) {
@@ -199,6 +202,9 @@
                 max-width: 850px;
             }
 
+            .menu-item {
+                font-size: 20px;
+            }
 
             [data-overskrift] {
                 min-height: 99px;
