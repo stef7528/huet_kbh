@@ -1,0 +1,146 @@
+
+        .post-container button {
+            display: none;
+            border: 2px solid var(--roed);
+            background-color: var(--lyseroed);
+            color: var(--blaa);
+            border-radius: 2em;
+            height: 40px;
+            min-width: 125px;
+            padding: 0 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: .5s;
+        }
+
+
+
+        #indhold {
+            width: 100vw;
+            margin-bottom: 50px;
+
+        }
+
+        .data-container {
+            display: grid;
+            max-width: 400px;
+            margin: 0 auto;
+            grid-gap: 10px;
+
+        }
+
+        .data-container article img {
+            width: 100%;
+        }
+
+        .post-container {
+            padding: 1em;
+            grid-row: span 1;
+            transition: .4s;
+            background-color: rgba(33, 25, 25, 0.61);
+            color: rgba(211, 211, 211, 0.81);
+
+        }
+
+
+        .post-container:hover {
+           border: 2px solid var(--roed);
+           transform: scale(1.1);
+           background-color: rgba(33, 25, 25, 0.94);
+            color:  rgba(250, 250, 250, 0.81);
+        }
+
+
+        .post-container p,
+        [data-billede],
+        .post-container h2,
+        .post-container button {
+            margin: 7px 0;
+        }
+
+        /*[data-overskrift] {
+            min-height: 66px;
+        }
+*/
+        .flex-pris {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 10px;
+        }
+
+        [data-pris] {
+            padding-top: 10px;
+        }
+
+        .flex-genre {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .flex-dato {
+            display: flex;
+            justify-content: space-between;
+        }
+
+
+
+        @media screen and (min-width:650px) {
+
+        #indhold {
+                margin-bottom: 80px;
+            }
+
+        .post-container:hover {
+            border: 2px solid var(--roed);
+            transform: scale(1.1);
+            background-color: rgba(33, 25, 25, 0.94);
+            color:  rgba(250, 250, 250, 0.81);
+        }
+
+        .post-container button:hover {
+            background-color: rgb(255, 179, 179);
+        }
+
+
+        .data-container {
+                grid-template-columns: 1fr 1fr;
+            max-width: 600px;
+            }
+
+
+        [data-overskrift] {
+                min-height: 99px;
+            }
+
+        }
+
+        @media screen and (min-width:1000px) {
+
+            #indhold {
+                margin-bottom: 120px;
+            }
+
+            .data-container {
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-gap: 20px;
+
+            }
+
+            .data-container {
+
+                max-width: 850px;
+
+            }
+
+
+        }
+
+        @media screen and (min-width:1300px) {
+
+            .data-container {
+
+                max-width: 1300px;
+
+            }
+
+        }
