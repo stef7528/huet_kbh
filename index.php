@@ -3,13 +3,14 @@
 
 <head>
 
-    <title>Document</title>
+    <title>Huset - KBH</title>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="footer.css">
     <link rel="stylesheet" href="events.css">
+    <link rel="stylesheet" href="nyhedsbrev.css">
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
@@ -337,7 +338,7 @@
                         }
 
                         klon.querySelector(".post-container").addEventListener("click", () => {
-                            window.location.href = "singleview.html?id=" + post.id;
+                            window.location.href = "singleview.php?id=" + post.id;
 
                         });
 

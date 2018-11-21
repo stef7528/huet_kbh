@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="footer.css">
     <link rel="stylesheet" href="events.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="nyhedsbrev.css">
+    <title>Events</title>
 
     <style>
         :root {
@@ -56,36 +57,6 @@
             background-image: url(pics/baggrund.jpg);
         }
 
-
-        .nyhedsbrev {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: 60px;
-            background-color: rgba(33, 25, 25, 0.95);
-        }
-
-        .nyhedsbrev a {
-            text-decoration: none;
-            color: white;
-            cursor: pointer;
-        }
-
-        .nyhedsbrev p {
-            color: rgba(211, 211, 211, 0.81);
-            text-align: center;
-            font-size: 10px;
-            vertical-align: middle;
-            padding: 15px;
-
-
-        }
-
-        .close_nyhedsbrev {
-            padding-left: 10px;
-            cursor: pointer;
-        }
-
         .back {
             cursor: pointer;
             position: relative;
@@ -100,11 +71,6 @@
         }
 
         @media screen and (min-width:700px) {
-            .nyhedsbrev p {
-                padding: 0;
-                line-height: 50px;
-                font-size: 11px;
-            }
 
             .menu-item {
                 font-size: 15px;
@@ -118,14 +84,6 @@
                 font-size: 20px;
             }
 
-            .nyhedsbrev {
-                height: 50px;
-            }
-
-            .nyhedsbrev p {
-                padding: 0;
-                font-size: 15px;
-            }
 
             #filtrerings_knapper {
                 display: flex;
@@ -141,7 +99,7 @@
                 color: white;
 
             }
-
+        }
             .menu-item:hover {
                 text-shadow: 1px 1px 2px red, 0 0 25px red, 0 0 5px darkred;
             }
@@ -161,7 +119,6 @@
 
             }
 
-        }
 
     </style>
 </head>
@@ -185,10 +142,6 @@
     </main>
 
     <?php include "nyhedsbrev.html";?>
-
-    <article class="nyhedsbrev">
-        <p>Få nyheder, anbefalinger og særlige konkurrencer og tilbud ved at tilmelde dig vores nyhedsbrev - <a href="#"><b>Tilmed dig her</b></a> <span class="close_nyhedsbrev">&#10005;</span></p>
-    </article>
 
     <?php include "footer.html";?>
 
@@ -252,7 +205,7 @@
                     }
 
                     klon.querySelector(".post-container").addEventListener("click", () => {
-                        window.location.href = "singleview.html?id=" + post.id;
+                        window.location.href = "singleview.php?id=" + post.id;
                     });
                     if (post.acf.buy == true) {
                         klon.querySelector("[data-button]").style.display = "block";

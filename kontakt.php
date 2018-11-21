@@ -4,14 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="events.css">
+    <link rel="stylesheet" href="nyhedsbrev.css">
     <title>Kontakt</title>
     <style>
+
+           :root {
+            --blaa: rgb(36, 25, 93);
+            --groen: rgb(0, 89, 36);
+            --roed: rgb(211, 7, 42);
+            --graa: rgb(157, 157, 156);
+            --lyseblaa: rgb(233, 242, 253);
+            --lysegroen: rgb(226, 238, 216);
+            --lyseroed: rgb(252, 229, 241);
+        }
+
 
         * {
             margin: 0;
             padding: 0;
-            color: white;
-              font-family: "Avenir", Verdana, sans-serif;
+            font-family: "Avenir", Verdana, sans-serif;
         }
         body {
             min-height: 100%;
@@ -23,6 +37,7 @@
         .kontakt {
             max-width: 350px;
             margin: 0 auto;
+               color: white;
         }
         .kontakt p {
             padding: 10px;
@@ -32,10 +47,15 @@
             padding: 10px;
         }
 
+        .kontakt a {
+               color: white;
+        }
+
 
         .åbningstider {
             max-width: 350px;
             margin: 0 auto;
+               color: white;
         }
 
         .åbningstider h2 {
@@ -52,6 +72,7 @@
 
          .åbningstider ul li{
             margin-left: 20px;
+                color: white;
         }
 
         .kort_over_huset {
@@ -82,12 +103,14 @@
 
         .kontakt_formular h2 {
             margin-left: 10px;
+               color: white;
         }
 
         .kontakt_formular h3 {
             padding-bottom: 5px;
             padding-top: 15px;
             margin-left: 10px;
+               color: white;
         }
 
         textarea {
