@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="footer.css">
-  <link rel="stylesheet" href="events.css">
+    <link rel="stylesheet" href="events.css">
     <title>Document</title>
 
     <style>
@@ -106,7 +106,7 @@
                 font-size: 11px;
             }
 
-              .menu-item {
+            .menu-item {
                 font-size: 15px;
             }
 
@@ -162,10 +162,13 @@
             }
 
         }
+
     </style>
 </head>
 
 <body>
+
+    <?php include "header.html";?>
 
     <a class="back" onclick="goBack()">&#10094;</a>
     <main id="indhold">
@@ -178,38 +181,16 @@
             <button class="menu-item" data-kategori="Diverse">DIVERSE</button>
         </div>
 
-        <div class="container">
-            <section class="data-container"></section>
-        </div>
+        <?php include "main.html";?>
     </main>
-    <template class="data-template">
-        <article class="post-container">
 
-
-            <h2 data-overskrift></h2>
-
-            <div>
-                <div class="flex-genre">
-                    <p data-genre></p>
-                    <p data-lokation></p>
-                </div>
-                <img data-billede>
-                <!-- <p data-lang-beskrivelse></p>-->
-                <div class="flex-dato">
-                    <p data-dato></p>
-                    <p data-tid></p>
-                </div>
-                <div class="flex-pris">
-                    <p data-pris></p>
-                    <button data-button>Køb</button>
-                </div>
-            </div>
-        </article>
-    </template>
+    <?php include "nyhedsbrev.html";?>
 
     <article class="nyhedsbrev">
         <p>Få nyheder, anbefalinger og særlige konkurrencer og tilbud ved at tilmelde dig vores nyhedsbrev - <a href="#"><b>Tilmed dig her</b></a> <span class="close_nyhedsbrev">&#10005;</span></p>
     </article>
+
+    <?php include "footer.html";?>
 
 
 
@@ -288,6 +269,7 @@
         function goBack() {
             window.history.back();
         }
+
     </script>
 
 </body>

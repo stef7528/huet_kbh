@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontakt</title>
     <style>
 
@@ -223,6 +224,8 @@
 
 <body>
 
+    <?php include "header.html";?>
+
     <main>
 
         <article class="indhold">
@@ -267,14 +270,22 @@
                 <button data-button>Send</button>
             </div>
         </article>
-        <article class="nyhedsbrev">
-            <p>Få nyheder, anbefalinger og særlige konkurrencer og tilbud ved at tilmelde dig vores nyhedsbrev - <a href="#"><b>Tilmed dig her</b></a> <span class="close_nyhedsbrev">&#10005;</span></p>
-        </article>
     </main>
+
+    <?php include "nyhedsbrev.html";?>
+
+    <article class="nyhedsbrev">
+        <p>Få nyheder, anbefalinger og særlige konkurrencer og tilbud ved at tilmelde dig vores nyhedsbrev - <a href="#"><b>Tilmed dig her</b></a> <span class="close_nyhedsbrev">&#10005;</span></p>
+    </article>
+
+    <?php include "footer.html";?>
+
     <script>
         document.querySelector(".close_nyhedsbrev").addEventListener("click", () => {
             document.querySelector(".nyhedsbrev").style.display = "none";
         })
+
     </script>
 </body>
+
 </html>
