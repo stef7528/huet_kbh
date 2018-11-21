@@ -352,6 +352,10 @@
             )
         }
 
+             document.querySelector(".close_nyhedsbrev").addEventListener("click", () => {
+            document.querySelector(".nyhedsbrev").style.display = "none";
+        })
+
         function toggleMenu() {
             document.querySelector(".logoPil").classList.toggle("rotatePil");
 

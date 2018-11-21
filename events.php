@@ -57,19 +57,6 @@
             background-image: url(pics/baggrund.jpg);
         }
 
-        .back {
-            cursor: pointer;
-            position: relative;
-            width: auto;
-            color: #FFF;
-            font-weight: bold;
-            font-size: 3em;
-            transition: 0.3s ease;
-            border-radius: 0 3px 3px 0;
-            margin: 0 20px;
-            background-color: transparent;
-        }
-
         @media screen and (min-width:700px) {
 
             .menu-item {
@@ -127,7 +114,7 @@
 
     <?php include "header.html";?>
 
-    <a class="back" onclick="goBack()">&#10094;</a>
+
     <main id="indhold">
         <div id="filtrerings_knapper">
             <button class="menu-item" data-kategori="Menu">ALLE EVENTS</button>
@@ -219,9 +206,19 @@
             document.querySelector(".nyhedsbrev").style.display = "none";
         })
 
-        function goBack() {
-            window.history.back();
+
+              function toggleMenu() {
+            document.querySelector(".logoPil").classList.toggle("rotatePil");
+
+
+            document.querySelector("ul").classList.toggle("open_nav");
+
         }
+        document.querySelector(".logoPil").addEventListener("click", toggleMenu);
+
+        document.querySelector(".logoPil").addEventListener("click", function() {
+            event.stopPropagation();
+        });
 
     </script>
 

@@ -297,16 +297,25 @@
 
     <?php include "nyhedsbrev.html";?>
 
-    <article class="nyhedsbrev">
-        <p>Få nyheder, anbefalinger og særlige konkurrencer og tilbud ved at tilmelde dig vores nyhedsbrev - <a href="#"><b>Tilmed dig her</b></a> <span class="close_nyhedsbrev">&#10005;</span></p>
-    </article>
-
     <?php include "footer.html";?>
 
     <script>
         document.querySelector(".close_nyhedsbrev").addEventListener("click", () => {
             document.querySelector(".nyhedsbrev").style.display = "none";
         })
+
+              function toggleMenu() {
+            document.querySelector(".logoPil").classList.toggle("rotatePil");
+
+
+            document.querySelector("ul").classList.toggle("open_nav");
+
+        }
+        document.querySelector(".logoPil").addEventListener("click", toggleMenu);
+
+        document.querySelector(".logoPil").addEventListener("click", function() {
+            event.stopPropagation();
+        });
 
     </script>
 </body>

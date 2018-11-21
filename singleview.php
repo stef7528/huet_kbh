@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+       <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="nyhedsbrev.css">
+    <title>Sinlge Event</title>
     <style>
         :root {
             --blaa: rgb(36, 25, 93);
@@ -224,9 +227,26 @@
 
         };
 
+             document.querySelector(".close_nyhedsbrev").addEventListener("click", () => {
+            document.querySelector(".nyhedsbrev").style.display = "none";
+        })
+
         function goBack() {
             window.history.back();
         }
+
+            function toggleMenu() {
+            document.querySelector(".logoPil").classList.toggle("rotatePil");
+
+
+            document.querySelector("ul").classList.toggle("open_nav");
+
+        }
+        document.querySelector(".logoPil").addEventListener("click", toggleMenu);
+
+        document.querySelector(".logoPil").addEventListener("click", function() {
+            event.stopPropagation();
+        });
 
     </script>
 </body>
